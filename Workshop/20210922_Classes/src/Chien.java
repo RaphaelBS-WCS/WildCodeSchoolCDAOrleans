@@ -1,16 +1,4 @@
-public class Chien extends Animal implements paws  {
-
-    private Object paws;
-
-    @Override
-    public Integer getPaws() {
-        return (Integer) paws;
-    }
-
-    @Override
-    public void setPaws(Integer NbPaws) {
-        this.paws = NbPaws;
-    }
+public class Chien extends Podes implements paws  {
 
     public Chien(String name) {
         this.setName(name);

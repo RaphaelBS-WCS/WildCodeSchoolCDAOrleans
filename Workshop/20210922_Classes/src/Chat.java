@@ -1,16 +1,4 @@
-public class Chat extends Animal implements paws{
-
-    private Object paws;
-
-    @Override
-    public Integer getPaws() {
-        return (Integer) paws;
-    }
-
-    @Override
-    public void setPaws(Integer NbPaws) {
-        this.paws = NbPaws;
-    }
+public class Chat extends Podes implements paws{
 
     public Chat(String name) {
         this.setName(name);

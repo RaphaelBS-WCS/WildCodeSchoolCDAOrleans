@@ -1,17 +1,4 @@
-public class Cheval extends Animal implements paws {
-
-    private Object paws;
-
-    @Override
-    public Integer getPaws() {
-
-        return (Integer) paws;
-    }
-
-    @Override
-    public void setPaws(Integer NbPaws) {
-        this.paws = NbPaws;
-    }
+public class Cheval extends Podes implements paws {
 
     public Cheval(String name) {
 
@@ -20,6 +7,4 @@ public class Cheval extends Animal implements paws {
         this.setShout("hiiiiiiiii");
         this.setWayToMove("trotte");
     }
-
-
 }

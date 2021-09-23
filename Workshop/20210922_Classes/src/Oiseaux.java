@@ -1,20 +1,8 @@
-public class Oiseaux extends Animal implements paws, lay {
-
-    private Object paws;
+public class Oiseaux extends Podes implements paws, lay {
 
     @Override
     public Egg lay() {
         return new Egg();
-    }
-
-    @Override
-    public Integer getPaws() {
-        return (Integer) paws;
-    }
-
-    @Override
-    public void setPaws(Integer NbPaws) {
-        this.paws = NbPaws;
     }
 
     public Oiseaux(String name) {

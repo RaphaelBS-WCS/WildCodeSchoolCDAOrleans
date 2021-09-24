@@ -1,4 +1,4 @@
-public class Oiseaux extends Podes implements paws, lay {
+public class Oiseaux extends Podes implements lay {
 
     @Override
     public Egg lay() {
@@ -7,10 +7,10 @@ public class Oiseaux extends Podes implements paws, lay {
 
     public Oiseaux(String name) {
 
-        this.setName(name);
-        this.setWayToMove("vole");
-        this.setShout("Cuicui");
-        this.setPaws(2);
+        this.name = name;
+        this.wayToMove = "nage";
+        this.shout = "bublllbulllbll";
+        this.paws = 2;
     }
 }
 

@@ -7,8 +7,8 @@ public class Poisson extends Animal implements lay {
 
     public Poisson(String name){
 
-        this.setName(name);
-        this.setWayToMove("rampe");
-        this.setShout("bublllbulllbll");
+        this.name = name;
+        this.wayToMove = "nage";
+        this.shout = "bublllbulllbll";
     }
 }

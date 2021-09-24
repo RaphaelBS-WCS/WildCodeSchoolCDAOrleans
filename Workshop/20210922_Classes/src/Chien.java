@@ -1,8 +1,9 @@
-public class Chien extends Podes implements paws  {
+public class Chien extends Podes {
 
     public Chien(String name) {
-        this.setName(name);
-        this.setShout("Wouaf");
-        this.setWayToMove("marche");
+        this.name = name;
+        this.shout = "Wouaf";
+        this.wayToMove = "marche";
+        this.paws = 4;
     }
 }

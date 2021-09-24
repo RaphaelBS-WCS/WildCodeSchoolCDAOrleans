@@ -1,9 +1,9 @@
-public class Chat extends Podes implements paws{
+public class Chat extends Podes {
 
     public Chat(String name) {
-        this.setName(name);
-        this.setPaws(4);
-        this.setShout("miaou");
-        this.setWayToMove("marche");
+        this.name = name;
+        this.paws = 4;
+        this.shout = "miaou";
+        this.wayToMove = "marche";
     }
 }

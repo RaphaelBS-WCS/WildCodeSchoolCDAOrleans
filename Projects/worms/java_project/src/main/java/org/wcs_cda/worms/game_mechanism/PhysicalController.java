@@ -14,9 +14,6 @@ public class PhysicalController extends JPanel {
     private final int B_WIDTH = 1200;
     private final int B_HEIGHT = 800;
         
-    private ArrayList<Worm> worms;
-    private Worm activeWorm;
-    
     private WormField wormField;
     
     public PhysicalController() {
@@ -44,8 +41,10 @@ public class PhysicalController extends JPanel {
         
         if (inGame) {
         	wormField.draw(g, this);
-        	doGravity();
-        	activeWorm.draw(g, this);
+        	for(Worm worm: Worm.getAllWorms()) {
+        		doGravity(worm);
+        		worm.draw(g, this);
+        	}
         	
             Toolkit.getDefaultToolkit().sync();
 
@@ -54,16 +53,16 @@ public class PhysicalController extends JPanel {
         }        
     }
 
-    private void doGravity() {
-		while(!wormField.getFrontier().intersects(activeWorm.getOuterRect()))
+    private void doGravity(Worm worm) {
+		while(!wormField.getFrontier().intersects(worm.getOuterRect()))
 		{
-			activeWorm.setY(activeWorm.getY() + 3);
+			worm.setY(worm.getY() + 3);
 		}
 		
-		while(wormField.getFrontier().intersects(activeWorm.getRect())
+		while(wormField.getFrontier().intersects(worm.getRect())
 		)
 		{
-			activeWorm.setY(activeWorm.getY() - 3);
+			worm.setY(worm.getY() - 3);
 		}
 	}
 
@@ -78,25 +77,8 @@ public class PhysicalController extends JPanel {
     }
 
     public boolean actionPerformed(ActionEvent e) {
-
-        /* if (inGame) {
-
-            checkApple();
-            checkCollision();
-            move();
-        }*/
-
         repaint();
         
         return true;
     }
-
-	public IMovable getCurrentMovable() {
-		return activeWorm;
-	}
-
-	public void createWorm(Player luckyLuke) {
-		Worm worm = new Worm(luckyLuke);
-		activeWorm = worm;
-	}
 }

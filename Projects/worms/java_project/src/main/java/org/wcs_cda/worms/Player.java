@@ -3,7 +3,7 @@ package org.wcs_cda.worms;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import org.wcs_cda.worms.board.AbstractBoardElement;
+import org.wcs_cda.worms.board.AbstractDrawableElement;
 import org.wcs_cda.worms.board.Worm;
 import org.wcs_cda.worms.board.weapons.AbstractWeapon;
 import org.wcs_cda.worms.board.weapons.Shotgun;
@@ -24,8 +24,11 @@ public class Player {
 		return name;
 	}
 	
-	public void addWorm(Worm worm) {
+	public Worm createWorm(String nom) {
+		Worm worm = new Worm(this, nom);
 		worms.add(worm);
+		
+		return worm;
 	}
 
 	public Color getColor() {

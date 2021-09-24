@@ -5,7 +5,7 @@ import java.awt.image.ImageObserver;
 
 import org.wcs_cda.worms.Config;
 
-public abstract class AbstractBoardElement {
+public abstract class AbstractDrawableElement {
 	private int depth;
 
 	public int getDepth() {

@@ -16,10 +16,10 @@ public abstract class AbstractPhase {
 		phaseStart = Instant.now();
 	}
 	
+	public abstract void forwardKeyPressed(String key);
+	
 	public boolean isFinished() {
 		Duration timeElapsed = Duration.between(Instant.now(), phaseStart);
 		return timeElapsed.toSeconds() > getMaxDurationSeconds();
 	}
-	
-	
 }

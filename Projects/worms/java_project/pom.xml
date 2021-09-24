@@ -33,7 +33,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>org.wcs_cda.worms.WormLauncher</mainClass>
+							<mainClass>org.wcs_cda.worms.game_mechanism.WormLauncher</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

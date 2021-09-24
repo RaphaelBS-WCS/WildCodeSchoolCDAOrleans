@@ -1,12 +1,11 @@
 import com.sun.jdi.event.StepEvent;
-
 public abstract class Animal {
 
-    String name;
+    protected String name;
 
-    String shout;
+    protected String shout;
 
-    String wayToMove;
+    protected String wayToMove;
 
     public String getName() {
         return name;
@@ -20,4 +19,5 @@ public abstract class Animal {
         System.out.println(this.shout);
     }
 
+    public Animal() {};
 }

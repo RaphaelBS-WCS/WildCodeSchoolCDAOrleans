@@ -1,5 +1,4 @@
 public class Chat extends Podes {
-
     public Chat(String name) {
         this.name = name;
         this.paws = 4;

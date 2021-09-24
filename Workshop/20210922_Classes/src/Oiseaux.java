@@ -1,10 +1,5 @@
 public class Oiseaux extends Podes implements lay {
 
-    @Override
-    public Egg lay() {
-        return new Egg();
-    }
-
     public Oiseaux(String name) {
 
         this.name = name;

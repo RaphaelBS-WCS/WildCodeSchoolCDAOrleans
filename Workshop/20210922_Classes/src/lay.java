@@ -1,3 +1,5 @@
 public interface lay {
-   public Egg lay();
+   public default Egg lay() {
+      return new Egg();
+   };
 }

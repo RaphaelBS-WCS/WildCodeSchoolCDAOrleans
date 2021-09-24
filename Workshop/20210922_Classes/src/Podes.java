@@ -1,6 +1,8 @@
 public abstract class Podes extends Animal{
-    protected int paws;
+    public void setPaws(int paws) {this.paws = paws; }
     public int getPaws() {
-        return (int) paws;
+        return paws;
     }
+
+    protected int paws;
 }

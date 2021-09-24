@@ -2,8 +2,9 @@ public class Dauphin extends Animal {
 
     public Dauphin(String name) {
 
-        this.name = name;
-        this.wayToMove = "nage";
-        this.shout = "kriiiikiiiiii";
+        this.setName(name);
+        this.setShout("kriiiikiiiiii");
+        this.setWayToMove("nage");
+
     }
 }

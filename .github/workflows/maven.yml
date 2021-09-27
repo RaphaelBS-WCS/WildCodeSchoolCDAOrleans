@@ -24,3 +24,8 @@ jobs:
     - name: Build Worm Project and launch
       working-directory: Projects/worms/java_project
       run: mvn -B package --file pom.xml && java -jar target/Worms-1.0.jar --launch-test
+    - name: Download checkstyle
+      run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-9.0/checkstyle-9.0-all.jar
+    - name: Run checkstyle 
+      run: find Projects -name "*.java" | xargs java -jar checkstyle-9.0-all.jar -c /google_checks.xml
+

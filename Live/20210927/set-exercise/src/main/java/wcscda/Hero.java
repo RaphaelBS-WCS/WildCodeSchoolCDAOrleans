@@ -2,7 +2,7 @@ package wcscda;
 
 public class Hero implements Comparable<Hero> {
 	private String name;
-	private int age;
+	private Integer age;
 	
 	public Hero() {}
 	public Hero(String name, int age) {
@@ -26,6 +26,10 @@ public class Hero implements Comparable<Hero> {
 	
 	@Override
 	public int compareTo(Hero arg0) {
-		return 0;
+		return -2*name.compareTo(arg0.getName()) + age.compareTo(arg0.getAge());
+	}
+	@Override
+	public String toString() {
+		return "Hero [name=" + name + ", age=" + age + "]";
 	}
 }

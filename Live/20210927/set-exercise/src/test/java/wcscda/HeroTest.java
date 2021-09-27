@@ -12,10 +12,12 @@ public class HeroTest extends TestCase {
 		Set<Hero> heroSet = new TreeSet<Hero>();
 		
 		heroSet.add(new Hero("Thor", 1500));
+		heroSet.add(new Hero("Thor", 150));
 		heroSet.add(new Hero("IronMan", 40));
 		heroSet.add(new Hero("Captain America", 40));
+		System.out.println(heroSet);
 		
 		// Oups pourquoi ???
-		assertEquals(heroSet.size(), 3);
+		assertEquals(3, heroSet.size());
     }
 }

@@ -7,21 +7,19 @@ public abstract class Animal {
 
     private String wayToMove;
 
-    public void setName(String name) {
+    public Animal(String name, String shout, String wayToMove) {
         this.name = name;
-    }
-
+        this.shout = shout;
+        this.wayToMove = wayToMove;
+    }    
+    
     public String getName() {
         return name;
     }
 
-    public void setShout(String shout) {
-        this.shout = shout;
-    }
 
-    public void setWayToMove(String wayToMove) {
-        this.wayToMove = wayToMove;
-    }
+
+
 
     public void move(){
         System.out.println("Je  " + this.wayToMove);

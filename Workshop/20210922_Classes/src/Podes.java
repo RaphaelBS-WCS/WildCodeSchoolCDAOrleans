@@ -1,5 +1,9 @@
 public abstract class Podes extends Animal{
-    public void setPaws(int paws) {this.paws = paws; }
+    public Podes(String name, String shout, String wayToMove, int paws) {
+        super(name, shout, wayToMove);
+        this.paws = paws;
+    }
+
     public int getPaws() {
         return paws;
     }

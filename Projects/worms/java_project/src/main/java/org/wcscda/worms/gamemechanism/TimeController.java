@@ -34,14 +34,47 @@ public class TimeController implements ActionListener {
     board = new PhysicalController();
     // Lucky luke because for the moment he is a poor lonesome
     // player
-    Player luckyLuke = createPlayer("Lucky Luke", Color.RED);
+    //int nbrPlayer = 3;
+    //int nbrWorms = 3;
+    ArrayList<Color> colors = new ArrayList<>();
+    colors.add(Color.RED);
+    colors.add(Color.ORANGE);
+    colors.add(Color.BLUE);
+    colors.add(Color.MAGENTA);
+    colors.add(Color.PINK);
+    colors.add(Color.CYAN);
+    colors.add(Color.GREEN);
+    colors.add(Color.YELLOW);
+    Collections.shuffle(colors);
 
-    for (String name : new String[] {"Joly jumper", "rantanplan"}) {
-      Worm worm = luckyLuke.createWorm(name);
-      board.wormInitialPlacement(worm);
+    Map<String, String[]> teams = new HashMap<>();
+
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Veuillez saisir le nombre de joueur : ");
+    int nbrPlayer = scan.nextInt();
+    System.out.println("Veuillez saisir le nombre de worms : ");
+    int nbrWorms = scan.nextInt();
+
+    for (int iP = 0; iP < nbrPlayer; ++iP) {
+      System.out.println("Veuillez saisir le nom du joueur " + (iP +1) + ": ");
+      String playerName = scan.next();
+      teams.put(playerName, new String[nbrWorms]);
+      for (int iW = 0; iW < nbrWorms; ++iW) {
+        System.out.println("Veuillez saisir le nom du worm " + (iW +1) + ": ");
+        teams.get(playerName)[iW] = scan.next();
+      }
     }
 
-    setNextWorm();
+    int i = 0;
+    for (String name : teams.keySet()) {
+        Player player = createPlayer(name, colors.get(i));
+        i++;
+        for (String toto : teams.get(name)) {
+          Worm worm = player.createWorm(toto);
+          board.wormInitialPlacement(worm);
+          setNextWorm();
+        }
+    }
   }
 
   public void setNextWorm() {

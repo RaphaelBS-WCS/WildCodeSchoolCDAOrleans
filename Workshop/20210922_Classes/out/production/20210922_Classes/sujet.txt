@@ -1,0 +1,26 @@
+
+## Workshop 2 - les classes ##
+
+On cherche à représenter un ensemble d'animaux :
+  - cheval
+  - chien
+  - chat
+  - oiseaux
+  - poisson
+  - dauphin
+  - serpent
+
+Le but de l'exercice étant de construire la hiérarchie de classe qui répond au cahier des charges en aillant le moins de définition de méthode. Pour info cela exclue les méthodes abstraites, qui sont déclarées mais pas définies.
+
+Celui qui aura le moins de définitions de fonction aura un badge (Pour le coup cela inclue les constructeurs et getter / setter)
+
+Pour rappel il faut committer / pusher le code dans votre fork du repository, dans ce répertoire, sur la branche main.
+
+Les requirements sont les suivants :
+  - tous les animaux ont un nom (2 chiens par exemple peuvent avoir 2 noms différents). On peut y accéder (String getNom())
+  - tous les animaux ont une fonction void crier() qui affiche un message différent par type d'animal (deux chiens ont le même cri, un chien et un chat n'ont pas le même cri)
+  - les animaux qui ont des pattes (et seulement eux) ont une fonction getNbPattes() qui renvoit le nombre de pattes. (Attention, il y a un petit piège)
+  - les animaux qui peuvent pondre (et seulement eux) ont une fonction pondre qui renvoit un oeuf (Une classe complement vide)
+  - tous les animaux ont une fonction bouger qui affiche un message parmi ("je rampe", "je cours", "je vole", "je nage") qui correspond à la réalité (non, vous n'avez pas le droit de faire courir les oiseaux pour éviter un cas particulier)
+
+That's all folks !

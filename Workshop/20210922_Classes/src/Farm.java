@@ -9,33 +9,12 @@ public class Farm {
     private static Serpent kaa = new Serpent("Kaa");
 
     public static void main(String[] args) {
-        System.out.println("Je m'appel " + kitty.getName());
-        kitty.move();
-        kitty.crier();
-        System.out.println("Je m'appel " + jollyJumper.getName());
-        jollyJumper.move();
-        jollyJumper.crier();
-        System.out.println("Je m'appel " + bobby.getName());
-        bobby.move();
-        bobby.crier();
-        System.out.println("Je m'appel " + flipper.getName());
-        flipper.move();
-        flipper.crier();
-        System.out.println("Je m'appel " + charlie.getName());
-        charlie.move();
-        charlie.crier();
-        charlie.lay();
-        System.out.println("Je m'appel " + nemo.getName());
-        nemo.move();
-        nemo.crier();
-        nemo.lay();
-        System.out.println("Je m'appel " + kaa.getName());
-        kaa.move();
-        kaa.crier();
-        kaa.lay();
+        Animal[] animals = {kitty, jollyJumper, bobby, flipper, charlie, nemo, kaa};
 
-
-        System.out.println();
-        System.out.println(kitty.getName() + " a " + kitty.getPaws() + " pattes.");
+        for (Animal animal : animals) {
+            System.out.println("Je m'appelle " + animal.getName());
+            animal.move();
+            animal.crier();
+        }
     }
 }

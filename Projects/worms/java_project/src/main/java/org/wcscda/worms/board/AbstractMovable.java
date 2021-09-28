@@ -4,7 +4,7 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.util.HashSet;
 
-public abstract class AbstractMovable extends AbstractBoardElement {
+public abstract class  AbstractMovable extends AbstractBoardElement {
   // Speed is in pixel by clock iteration
   private double speed = 0.0;
   // In radian

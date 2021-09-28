@@ -29,8 +29,10 @@ public class KeyboardController extends KeyAdapter {
   private static Map<Integer, String> getLocalizationCorrectionMap() {
     if (localizationCorrectionMap == null) {
       localizationCorrectionMap = new HashMap<Integer, String>();
-      localizationCorrectionMap.put(KeyEvent.VK_R, "Right");
-      localizationCorrectionMap.put(KeyEvent.VK_L, "Left");
+      localizationCorrectionMap.put(KeyEvent.VK_RIGHT, "Right");
+      localizationCorrectionMap.put(KeyEvent.VK_LEFT, "Left");
+      localizationCorrectionMap.put(KeyEvent.VK_UP, "Up");
+      localizationCorrectionMap.put(KeyEvent.VK_DOWN, "Down");
       localizationCorrectionMap.put(KeyEvent.VK_SPACE, "Space");
     }
 

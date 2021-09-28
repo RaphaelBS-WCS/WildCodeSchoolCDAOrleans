@@ -9,6 +9,9 @@ public class Farm {
     private static Serpent kaa = new Serpent("Kaa");
 
     public static void main(String[] args) {
+        // NRO 2021-09-27 : même en informatique, attention au français, "je m'appel"
+        //  ça pique les yeux quand même
+        // DRY : Don't Repeat Yourself
         System.out.println("Je m'appel " + kitty.getName());
         kitty.move();
         kitty.crier();

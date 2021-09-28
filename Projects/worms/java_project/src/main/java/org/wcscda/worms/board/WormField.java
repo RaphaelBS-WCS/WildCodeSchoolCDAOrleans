@@ -4,12 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
 import java.awt.image.ImageObserver;
 
 public class WormField extends AbstractBoardElement {
-  private int[][] allPixel;
   private Area frontier;
 
   public WormField() {}
@@ -55,17 +53,15 @@ public class WormField extends AbstractBoardElement {
     g.fill(frontier);
   }
 
-  public void doExplosionOnField(int x, int y, int radius) {
-    Ellipse2D explosion = new Ellipse2D.Double(x, y, radius, radius);
-
-    frontier.subtract(new Area(explosion));
-  }
-
   public Area getFrontier() {
     return frontier;
   }
 
   public Shape getShape() {
     return frontier;
+  }
+
+  public void doExplosionOnField(Shape explosionShape) {
+    frontier.subtract(new Area(explosionShape));
   }
 }

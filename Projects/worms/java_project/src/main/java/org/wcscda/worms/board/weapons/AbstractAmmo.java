@@ -1,7 +1,6 @@
 package org.wcscda.worms.board.weapons;
 
 import java.awt.geom.Point2D;
-
 import org.wcscda.worms.board.AbstractBoardElement;
 import org.wcscda.worms.board.AbstractRectangularBoardElement;
 import org.wcscda.worms.board.Worm;

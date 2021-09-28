@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import java.time.Duration;
 import java.time.Instant;
-
 import org.wcscda.worms.Player;
 import org.wcscda.worms.board.AbstractDrawableElement;
 

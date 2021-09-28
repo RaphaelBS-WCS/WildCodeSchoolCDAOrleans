@@ -3,10 +3,11 @@ package org.wcscda.worms.gamemechanism;
 import java.awt.EventQueue;
 import java.util.Arrays;
 import javax.swing.JFrame;
-
 import org.wcscda.worms.Config;
 
 public class WormLauncher extends JFrame {
+  private static final long serialVersionUID = 1L;
+
   public WormLauncher() {
     initUI();
   }
@@ -22,7 +23,7 @@ public class WormLauncher extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
     try {
       Config.loadConfig();
     } catch (Exception ex) {

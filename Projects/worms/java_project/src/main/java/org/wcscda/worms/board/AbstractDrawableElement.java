@@ -2,7 +2,6 @@ package org.wcscda.worms.board;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
-
 import org.wcscda.worms.Config;
 
 // NRO 2021-09-27 : Drawable elements are present visually

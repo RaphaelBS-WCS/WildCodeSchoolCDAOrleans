@@ -2,7 +2,6 @@ package org.wcscda.worms.gamemechanism.phases;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
-
 import org.wcscda.worms.Config;
 import org.wcscda.worms.board.Worm;
 import org.wcscda.worms.gamemechanism.PhysicalController;
@@ -15,6 +14,7 @@ public class WormMovingPhase extends AbstractPhase {
   public WormMovingPhase(Worm worm) {
     super(worm.getPlayer());
     this.activeWorm = worm;
+    getActivePlayer().getCurrentWeapon().setAngle(worm.getDirection());
   }
 
   @Override
@@ -29,17 +29,11 @@ public class WormMovingPhase extends AbstractPhase {
   @Override
   public void forwardKeyPressed(String key) {
     if (key.equals("Left")) {
-      activeWorm.getPlayer().getCurrentWeapon().setAngle(Math.PI);
-      activeWorm.setDirection(Math.PI);
-      activeWorm.setUserMoving(true);
-      activeWorm.singleMove(PhysicalController.getInstance(), -WORM_STEP_SPEED, 0.0);
+      moveWorm(Math.PI);
     }
 
     if (key.equals("Right")) {
-      activeWorm.getPlayer().getCurrentWeapon().setAngle(0);
-      activeWorm.setDirection(0);
-      activeWorm.setUserMoving(true);
-      activeWorm.singleMove(PhysicalController.getInstance(), WORM_STEP_SPEED, 0.0);
+      moveWorm(0);
     }
 
     if (key.equals("Space")) {
@@ -50,6 +44,13 @@ public class WormMovingPhase extends AbstractPhase {
 
       TimeController.getInstance().setCurrentPhase(new MovingPhase(getActivePlayer()));
     }
+  }
+
+  private void moveWorm(double angle) {
+    activeWorm.getPlayer().getCurrentWeapon().setAngle(angle);
+    activeWorm.setDirection(angle);
+    activeWorm.setUserMoving(true);
+    activeWorm.singleMove(PhysicalController.getInstance(), Math.cos(angle) * WORM_STEP_SPEED, 0.0);
   }
 
   @Override

@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
-
 import org.wcscda.worms.Player;
 import org.wcscda.worms.RandomGenerator;
 import org.wcscda.worms.gamemechanism.Board;
@@ -14,21 +13,15 @@ public class Worm extends ARBEWithGravity {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
 
-  private static final int imageWidth = 54;
   private static final int imageHeight = 60;
+  private static final int imageWidth = 54;
   private static final int rectPadding = 15;
-
-  private static final int outerMargin = 3;
 
   private static Image wormLF = null;
   private static Image wormRF = null;
-
-  // The position of the worm
-  private final Player player;
-  private final String name;
-
   private int life = 100;
-
+  private final String name;
+  private final Player player;
   private boolean isUserMoving;
 
   private static void initImages() {

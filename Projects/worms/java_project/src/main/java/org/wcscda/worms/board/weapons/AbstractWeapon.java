@@ -2,7 +2,6 @@ package org.wcscda.worms.board.weapons;
 
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
-
 import org.wcscda.worms.board.Worm;
 
 public abstract class AbstractWeapon {

@@ -1,3 +1,7 @@
 .ipynb_checkpoints
 *.class
 *.jar
+.project
+.idea
+.classpath
+.settings

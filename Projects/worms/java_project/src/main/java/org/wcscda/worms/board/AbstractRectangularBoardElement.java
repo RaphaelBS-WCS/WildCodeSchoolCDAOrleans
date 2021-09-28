@@ -6,6 +6,11 @@ import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 
+/* NRO 2021-09-27
+ *   This class handle movable objects represented by a rectangle (
+ *   which might mean all of them because of the Shape.intersects
+ *   needing a rectangle)
+ */
 public abstract class AbstractRectangularBoardElement extends AbstractMovable {
   private Rectangle2D innerRect;
 

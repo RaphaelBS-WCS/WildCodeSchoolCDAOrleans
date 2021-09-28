@@ -17,7 +17,7 @@ public abstract class Animal {
         return name;
     }
 
-
+    // NRO 2021-09-27 : penser à enlever les espaces inutiles
 
 
 

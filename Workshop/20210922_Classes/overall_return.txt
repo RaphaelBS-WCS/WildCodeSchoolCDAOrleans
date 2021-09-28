@@ -1,0 +1,3 @@
+// NRO 2021-09-27 : dans l'ensemble c'est très bien, c'est vraiment dommage pour le main
+//  de Farm très moche (pour la répétition et la faute de français) qui gache 
+//  l'impression

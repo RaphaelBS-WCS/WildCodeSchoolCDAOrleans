@@ -1,15 +1,15 @@
 package org.wcscda.worms.gamemechanism;
 
-import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractMovable;
 import org.wcscda.worms.board.IMovableVisitor;
 import org.wcscda.worms.board.Worm;
 
 public class PhysicalController extends Board implements IMovableVisitor {
+
+  private static final long serialVersionUID = 1L;
   private static PhysicalController instance;
 
   public static PhysicalController getInstance() {
@@ -102,7 +102,6 @@ public class PhysicalController extends Board implements IMovableVisitor {
         continue;
       }
 
-      Point2D currentPosition = movable.getCurrentPosition();
       movable.move(this);
     }
   }
@@ -115,7 +114,7 @@ public class PhysicalController extends Board implements IMovableVisitor {
             centerY - explosionRadius,
             2 * explosionRadius,
             2 * explosionRadius);
-    getWormField().getFrontier().subtract(new Area(circle));
+    getWormField().doExplosionOnField(circle);
 
     for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
       if (movable.isColidingWith(circle)) {

@@ -2,7 +2,6 @@ package org.wcscda.worms;
 
 import java.awt.Color;
 import java.util.ArrayList;
-
 import org.wcscda.worms.board.Worm;
 import org.wcscda.worms.board.weapons.AbstractWeapon;
 import org.wcscda.worms.board.weapons.Hadoken;

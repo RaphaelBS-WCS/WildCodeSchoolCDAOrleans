@@ -36,13 +36,9 @@ public abstract class Board extends JPanel {
   }
 
   private void doDrawing(Graphics2D g) {
-    wormField.draw(g, this);
-
-    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
-      movable.draw(g, this);
+    for (AbstractDrawableElement drawable : AbstractDrawableElement.getAllDrawable()) {
+      drawable.draw(g, this);
     }
-
-    TimeController.getInstance().getCurrentPhase().draw(g, this);
 
     Toolkit.getDefaultToolkit().sync();
   }
@@ -50,7 +46,8 @@ public abstract class Board extends JPanel {
   public boolean actionPerformed(ActionEvent e) {
     repaint();
     doMoves();
-    AbstractMovable.removeAllToBeRemoved();
+
+    AbstractDrawableElement.processToBeRemovedAndAdded();
 
     return true;
   }
@@ -65,7 +62,7 @@ public abstract class Board extends JPanel {
     return BOARD_HEIGHT;
   }
 
-  protected WormField getWormField() {
-    return this.wormField;
+  public WormField getWormField() {
+    return wormField;
   }
 }

@@ -8,7 +8,7 @@ import java.util.*;
 import javax.swing.Timer;
 import org.wcscda.worms.Config;
 import org.wcscda.worms.Player;
-import org.wcscda.worms.board.Worm;
+import org.wcscda.worms.Worm;
 import org.wcscda.worms.gamemechanism.phases.AbstractPhase;
 import org.wcscda.worms.gamemechanism.phases.WormMovingPhase;
 
@@ -22,6 +22,7 @@ public class TimeController implements ActionListener {
   private int phaseCount = 0;
 
   public TimeController() {
+    instance = this;
     initGame();
 
     board.addKeyListener(new KeyboardController());
@@ -80,8 +81,10 @@ public class TimeController implements ActionListener {
   public void setNextWorm() {
     activePlayerIndex += 1;
     activePlayerIndex %= players.size();
+    getActivePlayer().setNextWorm();
+    getActivePlayer().initWeapon();
 
-    AbstractPhase phase = new WormMovingPhase(getActivePlayer().getNextWorm());
+    AbstractPhase phase = new WormMovingPhase();
     this.setCurrentPhase(phase);
   }
 
@@ -118,6 +121,9 @@ public class TimeController implements ActionListener {
   }
 
   public void setCurrentPhase(AbstractPhase currentPhase) {
+    if ((this.currentPhase != null) && this.currentPhase != currentPhase) {
+      this.currentPhase.removeSelf();
+    }
     this.currentPhase = currentPhase;
   }
 

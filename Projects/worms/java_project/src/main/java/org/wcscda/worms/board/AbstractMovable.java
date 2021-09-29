@@ -2,7 +2,7 @@ package org.wcscda.worms.board;
 
 import java.awt.Shape;
 import java.awt.geom.Point2D;
-import java.util.HashSet;
+import java.util.stream.Stream;
 
 public abstract class  AbstractMovable extends AbstractBoardElement {
   // Speed is in pixel by clock iteration
@@ -10,24 +10,10 @@ public abstract class  AbstractMovable extends AbstractBoardElement {
   // In radian
   private double direction = 0.0;
 
-  private static final HashSet<AbstractMovable> allMovables = new HashSet<AbstractMovable>();
-  private static final HashSet<AbstractMovable> toBeRemoved = new HashSet<AbstractMovable>();
-
-  public static HashSet<AbstractMovable> getAllMovable() {
-    return allMovables;
-  }
-
-  public static HashSet<AbstractMovable> getToBeRemoved() {
-    return toBeRemoved;
-  }
-
-  public static void removeAllToBeRemoved() {
-    allMovables.removeAll(toBeRemoved);
-    toBeRemoved.clear();
-  }
-
-  public AbstractMovable() {
-    allMovables.add(this);
+  public static Stream<AbstractMovable> getAllMovable() {
+    return AbstractDrawableElement.getAllDrawable().stream()
+        .filter(ade -> ade instanceof AbstractMovable)
+        .map(AbstractMovable.class::cast);
   }
 
   public double getSpeed() {
@@ -82,11 +68,6 @@ public abstract class  AbstractMovable extends AbstractBoardElement {
     this.direction = direction;
   }
 
-  public void removeSelf() {
-    getToBeRemoved().add(this);
-  }
-
-  // This one is public
   public abstract void rawMove(double x, double y);
 
   public void singleMove(IMovableVisitor visitor, double x, double y) {
@@ -128,6 +109,7 @@ public abstract class  AbstractMovable extends AbstractBoardElement {
   public abstract void colideWith(AbstractBoardElement movable, Point2D prevPosition);
 
   public boolean isColidingWith(AbstractBoardElement abe) {
+    if (abe == this) return false;
     return isColidingWith(abe.getShape());
   }
 

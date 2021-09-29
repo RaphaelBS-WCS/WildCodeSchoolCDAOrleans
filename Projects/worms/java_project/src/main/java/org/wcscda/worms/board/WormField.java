@@ -6,6 +6,7 @@ import java.awt.Shape;
 import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.image.ImageObserver;
+import org.wcscda.worms.RandomGenerator;
 
 public class WormField extends AbstractBoardElement {
   private Area frontier;
@@ -23,7 +24,7 @@ public class WormField extends AbstractBoardElement {
     int[] randomSplineHeight = new int[nbSplines];
 
     for (int i = 0; i < nbSplines; ++i) {
-      randomSplineHeight[i] = (int) ((0.25 + 0.5 * Math.random()) * height);
+      randomSplineHeight[i] = (int) ((0.25 + 0.5 * RandomGenerator.nextDouble()) * height);
     }
 
     Path2D p = new Path2D.Double();
@@ -63,5 +64,9 @@ public class WormField extends AbstractBoardElement {
 
   public void doExplosionOnField(Shape explosionShape) {
     frontier.subtract(new Area(explosionShape));
+  }
+
+  protected Integer getDepth() {
+    return -1;
   }
 }

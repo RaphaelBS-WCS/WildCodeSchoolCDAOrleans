@@ -2,14 +2,19 @@ package org.wcscda.worms.gamemechanism;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import java.util.Optional;
+import org.wcscda.worms.Worm;
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractMovable;
 import org.wcscda.worms.board.IMovableVisitor;
-import org.wcscda.worms.board.Worm;
 
+/** @author nicolas */
 public class PhysicalController extends Board implements IMovableVisitor {
 
   private static final long serialVersionUID = 1L;
+  private static final int MAX_PIXEL_DIFF_SLOPE = 10;
+  private static final int SLOPE_STEP = 2;
+
   private static PhysicalController instance;
 
   public static PhysicalController getInstance() {
@@ -17,7 +22,6 @@ public class PhysicalController extends Board implements IMovableVisitor {
   }
 
   public PhysicalController() {
-    super();
     instance = this;
   }
 
@@ -32,9 +36,9 @@ public class PhysicalController extends Board implements IMovableVisitor {
   }
 
   private boolean doGravity(ARBEWithGravity arbe) {
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i * SLOPE_STEP < MAX_PIXEL_DIFF_SLOPE; ++i) {
       if (arbe.isColidingWith(getWormField().getFrontier())) {
-        arbe.rawMove(0, -2);
+        arbe.rawMove(0, -SLOPE_STEP);
       } else {
         break;
       }
@@ -46,18 +50,11 @@ public class PhysicalController extends Board implements IMovableVisitor {
       return false;
     }
 
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i * SLOPE_STEP < MAX_PIXEL_DIFF_SLOPE; ++i) {
       if (!arbe.isStandingOn(getWormField().getFrontier())) {
-        arbe.rawMove(0, 2);
+        arbe.rawMove(0, SLOPE_STEP);
       }
     }
-
-    /* if(!arbe.isStandingOn(getWormField().getFrontier())) {
-    	arbe.addSpeedXY(0, 2);
-    }
-    else {
-    	arbe.setSpeed(0);
-    }*/
 
     return true;
   }
@@ -69,13 +66,15 @@ public class PhysicalController extends Board implements IMovableVisitor {
       return;
     }
 
-    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
-      if (ab == movable) continue;
+    // NRO 2021-09-28 : For information this is a little bit of
+    //  algorithmic addict overkill
+    // You don't need to understand that for the moment.
+    // I am looking for the first object that colide with ab
+    Optional<AbstractMovable> oam =
+        AbstractMovable.getAllMovable().filter(movable -> ab.isColidingWith(movable)).findFirst();
 
-      if (ab.isColidingWith(movable)) {
-        ab.colideWith(movable, prevPosition);
-        return;
-      }
+    if (oam.isPresent()) {
+      ab.colideWith(oam.get(), prevPosition);
     }
   }
 
@@ -93,17 +92,19 @@ public class PhysicalController extends Board implements IMovableVisitor {
 
   @Override
   protected void doMoves() {
-    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
-      if (movable.getSpeed() < 0.5) {
-        movable.setSpeed(0.0);
-      }
+    AbstractMovable.getAllMovable()
+        .forEach(
+            movable -> {
+              if (movable.getSpeed() < 0.5) {
+                movable.setSpeed(0.0);
+              }
 
-      if (!movable.isMoving() && !movable.isSubjectToGravity()) {
-        continue;
-      }
+              if (!movable.isMoving() && !movable.isSubjectToGravity()) {
+                return;
+              }
 
-      movable.move(this);
-    }
+              movable.move(this);
+            });
   }
 
   public void generateExplosion(
@@ -116,10 +117,12 @@ public class PhysicalController extends Board implements IMovableVisitor {
             2 * explosionRadius);
     getWormField().doExplosionOnField(circle);
 
-    for (AbstractMovable movable : AbstractMovable.getAllMovable()) {
-      if (movable.isColidingWith(circle)) {
-        movable.takeDamage(explosionDamage);
-      }
-    }
+    AbstractMovable.getAllMovable()
+        .forEach(
+            movable -> {
+              if (movable.isColidingWith(circle)) {
+                movable.takeDamage(explosionDamage);
+              }
+            });
   }
 }

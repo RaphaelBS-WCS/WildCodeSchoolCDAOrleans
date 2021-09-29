@@ -2,9 +2,9 @@ package org.wcscda.worms;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import org.wcscda.worms.board.Worm;
 import org.wcscda.worms.board.weapons.AbstractWeapon;
 import org.wcscda.worms.board.weapons.Hadoken;
+import org.wcscda.worms.board.weapons.Shotgun;
 
 public class Player {
   private final String name;
@@ -16,7 +16,6 @@ public class Player {
   public Player(String name, Color color) {
     this.name = name;
     this.color = color;
-    this.currentWeapon = new Hadoken();
   }
 
   public String getName() {
@@ -42,10 +41,28 @@ public class Player {
     return worms;
   }
 
-  public Worm getNextWorm() {
+  public Worm getActiveWorm() {
+    return getWorms().get(currentWormIndex);
+  }
+
+  public void setNextWorm() {
     currentWormIndex += 1;
     currentWormIndex %= worms.size();
+  }
 
-    return getWorms().get(currentWormIndex);
+  public void changeWeapon() {
+    if (currentWeapon.isChangingWeaponDisabled()) {
+      return;
+    }
+
+    if (currentWeapon instanceof Hadoken) {
+      currentWeapon = new Shotgun();
+    } else {
+      currentWeapon = new Hadoken();
+    }
+  }
+
+  public void initWeapon() {
+    currentWeapon = new Hadoken();
   }
 }

@@ -1,12 +1,12 @@
-package org.wcscda.worms.board;
+package org.wcscda.worms;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
-import org.wcscda.worms.Player;
-import org.wcscda.worms.RandomGenerator;
+import org.wcscda.worms.board.ARBEWithGravity;
+import org.wcscda.worms.board.AbstractBoardElement;
 import org.wcscda.worms.gamemechanism.Board;
 
 public class Worm extends ARBEWithGravity {
@@ -31,11 +31,13 @@ public class Worm extends ARBEWithGravity {
         new ImageIcon(rightFacingResource).getImage().getScaledInstance(imageWidth, imageHeight, 0);
   }
 
-  public Worm(Player player, String name) {
+  // NRO 2021-09-28 : Player is the Worm factory
+  protected Worm(Player player, String name) {
     this(player, name, getRandomStartingX(), getRandomStartingY());
   }
 
-  public Worm(Player player, String name, int x, int y) {
+  // Idem
+  protected Worm(Player player, String name, int x, int y) {
     super(x, y, imageWidth - 2 * rectPadding, imageHeight - 2 * rectPadding);
 
     this.player = player;

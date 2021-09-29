@@ -9,7 +9,7 @@ import java.awt.image.ImageObserver;
 import org.wcscda.worms.Helper;
 
 public class Hadoken extends AbstractWeapon {
-  private static final int hadokenRadius = 50;
+  private static final int hadokenRadius = 70;
 
   @Override
   public void draw(Graphics2D g, ImageObserver io) {

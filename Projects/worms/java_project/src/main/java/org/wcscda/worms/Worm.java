@@ -59,9 +59,11 @@ public class Worm extends ARBEWithGravity {
 
     g.drawImage(worm, getX() - rectPadding, getY() - rectPadding, io);
 
-    // Drawing the life
     g.setColor(player.getColor());
-    g.drawString("" + life, (int) getX(), (int) getY() - 15);
+    //Drawing the worm name
+    g.drawString("" + this.getName(), (int) getX() + 5, (int) getY() - 35);
+    // Drawing the life
+    g.drawString("" + life, (int) getX() + 10, (int) getY() - 20);
   }
 
   private boolean isRightFacing() {

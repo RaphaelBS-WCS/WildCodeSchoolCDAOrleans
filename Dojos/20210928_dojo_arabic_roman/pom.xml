@@ -5,6 +5,10 @@
   <artifactId>dojo_arabic_roman</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
   <name>dojo_arabic_roman</name>
   <url>http://maven.apache.org</url>
   <dependencies>

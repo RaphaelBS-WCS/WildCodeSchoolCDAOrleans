@@ -65,4 +65,12 @@ public class Player {
   public void initWeapon() {
     currentWeapon = new Hadoken();
   }
+
+  public int getPlayerLife() {
+    int playerLife = 0;
+    for ( Worm worm : this.getWorms()) {
+      playerLife += worm.getLife();
+    }
+    return playerLife;
+  }
 }

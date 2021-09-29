@@ -108,4 +108,8 @@ public class Worm extends ARBEWithGravity {
     player.getWorms().remove(this);
     removeSelf();
   }
+
+  public int getLife() {
+    return life;
+  }
 }

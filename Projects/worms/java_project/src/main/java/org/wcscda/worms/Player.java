@@ -2,6 +2,8 @@ package org.wcscda.worms;
 
 import java.awt.Color;
 import java.util.ArrayList;
+
+import org.wcscda.worms.board.WormField;
 import org.wcscda.worms.board.weapons.AbstractWeapon;
 import org.wcscda.worms.board.weapons.Hadoken;
 import org.wcscda.worms.board.weapons.Shotgun;
@@ -73,4 +75,13 @@ public class Player {
     }
     return playerLife;
   }
+
+  public static void isPlayerDie() {
+    for (Player player : Helper.getTC().getPlayers()) {
+      if (player.getPlayerLife() <= 0) {
+        Helper.getTC().setCurrentNbPlayer(Helper.getTC().getCurrentNbPlayer() - 1);
+      }
+    }
+  }
 }
+

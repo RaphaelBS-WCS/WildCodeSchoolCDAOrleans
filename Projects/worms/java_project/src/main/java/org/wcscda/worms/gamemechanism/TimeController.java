@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.Timer;
 import org.wcscda.worms.Config;
+import org.wcscda.worms.Helper;
 import org.wcscda.worms.Player;
 import org.wcscda.worms.Worm;
 import org.wcscda.worms.gamemechanism.phases.AbstractPhase;
@@ -20,6 +21,7 @@ public class TimeController implements ActionListener {
   private int activePlayerIndex = 0;
   private AbstractPhase currentPhase;
   private int phaseCount = 0;
+  private int currentNbPlayer = 0;
 
   public TimeController() {
     instance = this;
@@ -76,6 +78,7 @@ public class TimeController implements ActionListener {
           setNextWorm();
         }
     }
+    setCurrentNbPlayer(Helper.getTC().getPlayers().size());
   }
 
   public void setNextWorm() {
@@ -141,5 +144,13 @@ public class TimeController implements ActionListener {
 
   public Player getActivePlayer() {
     return players.get(activePlayerIndex);
+  }
+
+  public int getCurrentNbPlayer() {
+    return currentNbPlayer;
+  }
+
+  public void setCurrentNbPlayer(int currentNbPlayer) {
+    this.currentNbPlayer = currentNbPlayer;
   }
 }

@@ -64,6 +64,8 @@ public class Worm extends ARBEWithGravity {
     g.drawString("" + this.getName(), (int) getX() + 5, (int) getY() - 35);
     // Drawing the life
     g.drawString("" + life, (int) getX() + 10, (int) getY() - 20);
+
+    g.drawString(Helper.getActivePlayer().getName(), 55, 55);
   }
 
   private boolean isRightFacing() {
@@ -100,6 +102,7 @@ public class Worm extends ARBEWithGravity {
   public void takeDamage(int damage) {
     life -= damage;
     if (life <= 0) {
+      Player.isPlayerDie();
       die();
     }
   }

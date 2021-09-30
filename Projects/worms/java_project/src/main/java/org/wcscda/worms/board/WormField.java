@@ -22,6 +22,11 @@ public class WormField extends AbstractBoardElement {
     initRandomSpline(width, height);
   }
 
+  public static void playerVictory(Graphics2D g) {
+
+
+  }
+
   private void initRandomSpline(int width, int height) {
     int nbSegments = 10;
     int nbSplines = 2 * nbSegments + 1;

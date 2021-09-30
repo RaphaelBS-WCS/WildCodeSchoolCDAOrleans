@@ -22,6 +22,12 @@ public class TimeController implements ActionListener {
   private AbstractPhase currentPhase;
   private int phaseCount = 0;
   private int currentNbPlayer = 0;
+  private boolean debutant = false;
+  public static Map<String, String[]> getTeams() {
+    return teams;
+  }
+
+  private static Map<String, String[]> teams = new HashMap<>();
 
   public TimeController() {
     instance = this;
@@ -47,18 +53,23 @@ public class TimeController implements ActionListener {
     colors.add(Color.YELLOW);
     Collections.shuffle(colors);
 
-    Map<String, String[]> teams = new HashMap<>();
 
+    System.out.println(Player.isDebutant());
     Scanner scan = new Scanner(System.in);
     System.out.println("Veuillez saisir le nombre de joueur : ");
     int nbrPlayer = scan.nextInt();
-    System.out.println("Veuillez saisir le nombre de worms : ");
+    System.out.println("Veuillez saisir le nombre de worms par joueur : ");
     int nbrWorms = scan.nextInt();
 
     for (int iP = 0; iP < nbrPlayer; ++iP) {
       System.out.println("Veuillez saisir le nom du joueur " + (iP +1) + ": ");
       String playerName = scan.next();
       teams.put(playerName, new String[nbrWorms]);
+      System.out.println((iP +1) + " est il debutant ? (y/n) : ");
+      String isDebutant = scan.next();
+      if (Objects.equals(isDebutant, "y")) {
+        debutant = true;
+      }
       for (int iW = 0; iW < nbrWorms; ++iW) {
         System.out.println("Veuillez saisir le nom du worm " + (iW +1) + ": ");
         teams.get(playerName)[iW] = scan.next();
@@ -66,11 +77,11 @@ public class TimeController implements ActionListener {
     }
 
     int i = 0;
-    for (String name : teams.keySet()) {
-        Player player = createPlayer(name, colors.get(i));
+    for (String playerName : teams.keySet()) {
+        Player player = createPlayer(playerName, colors.get(i), debutant);
         i++;
-        for (String toto : teams.get(name)) {
-          Worm worm = player.createWorm(toto);
+        for (String wormName : teams.get(playerName)) {
+          Worm worm = player.createWorm(wormName);
           board.wormInitialPlacement(worm);
           setNextWorm();
         }

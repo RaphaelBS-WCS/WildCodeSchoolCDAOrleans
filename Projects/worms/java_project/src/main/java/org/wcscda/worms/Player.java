@@ -14,11 +14,17 @@ public class Player {
   private final ArrayList<Worm> worms = new ArrayList<Worm>();
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
+  private static boolean debutant = false;
 
   public Player(String name, Color color, Boolean debutant) {
     this.name = name;
     this.color = color;
     Player.debutant = debutant;
+  }
+
+
+  public static boolean isDebutant() {
+    return debutant;
   }
 
   public String getName() {

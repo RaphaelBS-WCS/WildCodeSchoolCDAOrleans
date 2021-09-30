@@ -100,7 +100,14 @@ public class Worm extends ARBEWithGravity {
 
   @Override
   public void takeDamage(int damage) {
-    life -= damage;
+
+    Helper.getActivePlayer();
+    if (Player.isDebutant()) {
+      life -= damage * 1.25;
+    } else {
+      life -= damage;
+    }
+
     if (life <= 0) {
       Player.isPlayerDie();
       die();

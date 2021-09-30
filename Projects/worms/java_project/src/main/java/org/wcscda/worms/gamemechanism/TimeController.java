@@ -35,10 +35,7 @@ public class TimeController implements ActionListener {
 
   private void initGame() {
     board = new PhysicalController();
-    // Lucky luke because for the moment he is a poor lonesome
-    // player
-    //int nbrPlayer = 3;
-    //int nbrWorms = 3;
+
     ArrayList<Color> colors = new ArrayList<>();
     colors.add(Color.RED);
     colors.add(Color.ORANGE);
@@ -91,8 +88,8 @@ public class TimeController implements ActionListener {
     this.setCurrentPhase(phase);
   }
 
-  private Player createPlayer(String name, Color color) {
-    Player player = new Player(name, color);
+  private Player createPlayer(String name, Color color, Boolean debutant) {
+    Player player = new Player(name, color, debutant);
     players.add(player);
 
     return player;

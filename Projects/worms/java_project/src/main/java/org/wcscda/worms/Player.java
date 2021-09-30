@@ -15,9 +15,10 @@ public class Player {
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
 
-  public Player(String name, Color color) {
+  public Player(String name, Color color, Boolean debutant) {
     this.name = name;
     this.color = color;
+    Player.debutant = debutant;
   }
 
   public String getName() {

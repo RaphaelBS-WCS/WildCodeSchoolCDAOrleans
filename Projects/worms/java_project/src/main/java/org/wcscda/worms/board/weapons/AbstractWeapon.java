@@ -14,9 +14,10 @@ public abstract class AbstractWeapon {
     this.angle = Helper.getActiveWorm().getDirection();
   }
 
-  public abstract void draw(Graphics2D g, ImageObserver io);
+    public void draw(Graphics2D g, ImageObserver io) {
+    }
 
-  public double getAngle() {
+    public double getAngle() {
     return this.angle;
   }
 

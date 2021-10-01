@@ -37,6 +37,12 @@ public abstract class AbstractMovable extends AbstractBoardElement implements IV
 
   public void setSpeedXY(double speedX, double speedY) {
     double newSpeed = Math.sqrt(Math.pow(speedX, 2) + Math.pow(speedY, 2));
+
+    if (newSpeed < 0.05) {
+      setSpeed(0);
+      return;
+    }
+
     setSpeed(newSpeed);
 
     if (speedY >= 0) {

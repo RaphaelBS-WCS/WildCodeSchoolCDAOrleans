@@ -13,7 +13,7 @@ public class Shotgun extends AbstractWeapon {
   private static Image image = null;
   private int nbFiredShoots = 0;
 
-  private static void initImages() {
+  public static void initImages() {
     image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
   }
 
@@ -25,8 +25,8 @@ public class Shotgun extends AbstractWeapon {
 
     if (getAngle() > Math.PI / 2) {
       AffineTransform trans =
-          AffineTransform.getTranslateInstance(Helper.getWormX() + 100, Helper.getWormY());
-      trans.scale(-1, 1);
+          AffineTransform.getTranslateInstance(Helper.getWormX() - 40, Helper.getWormY());
+      trans.scale(1, 1);
 
       g.drawImage(image, trans, io);
     } else {

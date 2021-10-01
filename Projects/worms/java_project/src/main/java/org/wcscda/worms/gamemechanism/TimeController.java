@@ -53,8 +53,6 @@ public class TimeController implements ActionListener {
     colors.add(Color.YELLOW);
     Collections.shuffle(colors);
 
-
-    System.out.println(Player.isDebutant());
     Scanner scan = new Scanner(System.in);
     System.out.println("Veuillez saisir le nombre de joueur : ");
     int nbrPlayer = scan.nextInt();

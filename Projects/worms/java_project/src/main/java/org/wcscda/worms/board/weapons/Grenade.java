@@ -23,26 +23,17 @@ public class Grenade extends AbstractWeapon {
         if (image == null) {
             initImages();
         }
-
-        Ellipse2D circle =
-                new Ellipse2D.Double(
-                        Helper.getWormX() - hadokenRadius,
-                        Helper.getWormY() - hadokenRadius,
-                        2 * hadokenRadius,
-                        2 * hadokenRadius);
-
-        g.setColor(Color.BLUE);
-        g.setStroke(new BasicStroke(10));
-        g.draw(circle);
-
         if (getAngle() > Math.PI / 2) {
             AffineTransform trans =
-                    AffineTransform.getTranslateInstance(Helper.getWormX() + 100, Helper.getWormY());
-            trans.scale(-1, 1);
+                    AffineTransform.getTranslateInstance(Helper.getWormX() - 40, Helper.getWormY());
+            trans.scale(1, 1);
 
             g.drawImage(image, trans, io);
         } else {
-            g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
+            AffineTransform trans = AffineTransform.getTranslateInstance(Helper.getWormX() + 40, Helper.getWormY());
+            trans.scale(-1, 1);
+
+            g.drawImage(image, trans, io);
         }
     }
 }

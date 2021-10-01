@@ -18,6 +18,22 @@ public class ShotgunAmmo extends AbstractAmmo {
   @Override
   public void drawMain(Graphics2D g, ImageObserver io) {
     // TODO Auto-generated method stub
+      //Shotgun.draw();
 
+    if (image == null) {
+      initImages();
+    }
+    if (Helper.getActiveWorm().getDirection() == Math.PI) {
+      AffineTransform trans =
+              AffineTransform.getTranslateInstance(Helper.getWormX() - 40, Helper.getWormY() - 10);
+      trans.scale(1, 1);
+
+      g.drawImage(image, trans, io);
+    } else {
+      AffineTransform trans = AffineTransform.getTranslateInstance(Helper.getWormX() + 40, Helper.getWormY() - 10);
+      trans.scale(-1, 1);
+
+      g.drawImage(image, trans, io);
+    }
   }
 }

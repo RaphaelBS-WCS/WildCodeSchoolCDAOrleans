@@ -86,7 +86,6 @@ public class Player {
     currentWeapon = new Hadoken();
   }
 
-<<<<<<< HEAD
   public int getPlayerLife() {
     int playerLife = 0;
     for ( Worm worm : this.getWorms()) {
@@ -101,10 +100,10 @@ public class Player {
         Helper.getTC().setCurrentNbPlayer(Helper.getTC().getCurrentNbPlayer() - 1);
       }
     }
-=======
+  }
+
   public boolean hasWorms() {
     return !getWorms().isEmpty();
->>>>>>> 37a9922c24512b917633c34f84273bc54ed69716
   }
 }
 

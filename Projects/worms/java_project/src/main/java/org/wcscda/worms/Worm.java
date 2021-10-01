@@ -7,9 +7,11 @@ import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractBoardElement;
+import org.wcscda.worms.board.IMovableVisitor;
+import org.wcscda.worms.board.IVisitable;
 import org.wcscda.worms.gamemechanism.Board;
 
-public class Worm extends ARBEWithGravity {
+public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
 
@@ -19,6 +21,7 @@ public class Worm extends ARBEWithGravity {
 
   private static Image wormLF = null;
   private static Image wormRF = null;
+  private int shownLife = 100;
   private int life = 100;
   private final String name;
   private final Player player;
@@ -45,11 +48,11 @@ public class Worm extends ARBEWithGravity {
   }
 
   private static int getRandomStartingX() {
-    return RandomGenerator.getInstance().nextInt(Board.getB_WIDTH() - imageWidth);
+    return RandomGenerator.getInstance().nextInt(Board.getBWIDTH() - imageWidth);
   }
 
   private static int getRandomStartingY() {
-    return RandomGenerator.getInstance().nextInt(Board.getB_HEIGHT() - imageHeight);
+    return RandomGenerator.getInstance().nextInt(Board.getBHEIGHT() - imageHeight);
   }
 
   @Override
@@ -60,12 +63,25 @@ public class Worm extends ARBEWithGravity {
     g.drawImage(worm, getX() - rectPadding, getY() - rectPadding, io);
 
     g.setColor(player.getColor());
+    g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
     //Drawing the worm name
     g.drawString("" + this.getName(), (int) getX() + 5, (int) getY() - 35);
     // Drawing the life
     g.drawString("" + life, (int) getX() + 10, (int) getY() - 20);
 
     g.drawString(Helper.getActivePlayer().getName(), 55, 55);
+  }
+
+  private int getShownLife() {
+
+    if (life < shownLife) {
+      shownLife--;
+    } else if (life > shownLife) {
+      shownLife++;
+    }
+
+    return this.shownLife;
+
   }
 
   private boolean isRightFacing() {
@@ -85,7 +101,7 @@ public class Worm extends ARBEWithGravity {
   }
 
   @Override
-  public void colideWith(AbstractBoardElement movable, Point2D prevPosition) {
+  public void collideWith(AbstractBoardElement movable, Point2D prevPosition) {
     setPosition(prevPosition);
   }
 
@@ -121,5 +137,10 @@ public class Worm extends ARBEWithGravity {
 
   public int getLife() {
     return life;
+  }
+
+  @Override
+  public void accept(Point2D prevPosition, IMovableVisitor visitor) {
+    visitor.visit(this, prevPosition);
   }
 }

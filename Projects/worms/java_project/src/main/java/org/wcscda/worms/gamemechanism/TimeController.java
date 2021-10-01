@@ -113,11 +113,7 @@ public class TimeController implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     phaseCount++;
-    boolean inGame = board.actionPerformed(e);
-
-    if (!inGame) {
-      timer.stop();
-    }
+    board.actionPerformed(e);
   }
 
   public static TimeController getInstance() {

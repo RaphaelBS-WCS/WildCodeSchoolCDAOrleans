@@ -4,7 +4,7 @@ import java.awt.Shape;
 import java.awt.geom.Point2D;
 import java.util.stream.Stream;
 
-public abstract class  AbstractMovable extends AbstractBoardElement {
+public abstract class AbstractMovable extends AbstractBoardElement implements IVisitable {
   // Speed is in pixel by clock iteration
   private double speed = 0.0;
   // In radian
@@ -37,12 +37,6 @@ public abstract class  AbstractMovable extends AbstractBoardElement {
 
   public void setSpeedXY(double speedX, double speedY) {
     double newSpeed = Math.sqrt(Math.pow(speedX, 2) + Math.pow(speedY, 2));
-
-    if (newSpeed < 0.5) {
-      setSpeed(0);
-      return;
-    }
-
     setSpeed(newSpeed);
 
     if (speedY >= 0) {
@@ -71,7 +65,7 @@ public abstract class  AbstractMovable extends AbstractBoardElement {
   public abstract void rawMove(double x, double y);
 
   public void singleMove(IMovableVisitor visitor, double x, double y) {
-    Point2D currentPosition = getCurrentPosition();
+    Point2D currentPosition = getPosition();
     rawMove(x, y);
     accept(currentPosition, visitor);
   }
@@ -80,7 +74,7 @@ public abstract class  AbstractMovable extends AbstractBoardElement {
     singleMove(visitor, getSpeedX(), getSpeedY());
   }
 
-  public Point2D getCurrentPosition() {
+  public Point2D getPosition() {
     return new Point2D.Double(getX(), getY());
   }
 
@@ -104,13 +98,17 @@ public abstract class  AbstractMovable extends AbstractBoardElement {
     return false;
   }
 
-  public abstract boolean isColidingWith(Shape s);
+  /* NRO 2021-09-30 : Check if the movable is in collision
+   * with a Shape. The Shape is a very generic java.awt
+   * object, so any physical element is represented by a check
+   */
+  public abstract boolean isCollidingWith(Shape s);
 
-  public abstract void colideWith(AbstractBoardElement movable, Point2D prevPosition);
+  public abstract void collideWith(AbstractBoardElement movable, Point2D prevPosition);
 
-  public boolean isColidingWith(AbstractBoardElement abe) {
+  public boolean isCollidingWith(AbstractBoardElement abe) {
     if (abe == this) return false;
-    return isColidingWith(abe.getShape());
+    return isCollidingWith(abe.getShape());
   }
 
   // By default do nothing,might be overloaded

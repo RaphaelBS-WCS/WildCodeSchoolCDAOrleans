@@ -8,6 +8,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.*;*/
 
+/* NRO 2021-09-30 : Test class to play sound
+ *  don't use for the moment as it requires some thread
+ *  management, which hasn't been covered yet
+ */
 public class WormSoundPlayer {
 
   private static WormSoundPlayer instance;

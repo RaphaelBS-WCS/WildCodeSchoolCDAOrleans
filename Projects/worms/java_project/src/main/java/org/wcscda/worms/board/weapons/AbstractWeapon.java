@@ -21,12 +21,20 @@ public abstract class AbstractWeapon {
     return this.angle;
   }
 
-  public final void fire() {
+  public void fire() {
     Helper.getTC().setCurrentPhase(getNextPhase());
     createNewAmmo(getAngle());
   }
 
-  private void createNewAmmo(double angle) {
+  /* NRO 2021-09-30 : by default, the weapons are looking
+   * for a Ammo class of the same name as the class + Ammo
+   * (for ex Shotgun => ShotgunAmmo, Hadoken => HadokenAmmo)
+   * You can override the default behaviour by overriding
+   * this method.
+   * You don't need to understand this at the moment, this is
+   * for framework developpement mainly
+   */
+  protected void createNewAmmo(double angle) {
     String ammoClassName = this.getClass().getName() + "Ammo";
     Class<?> ammoClass = null;
     try {

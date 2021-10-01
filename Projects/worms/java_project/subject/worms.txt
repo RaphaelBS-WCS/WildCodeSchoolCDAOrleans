@@ -19,11 +19,12 @@ Il n'est pas demandé d'interface utilisateur pour les entrées textes et param�
 6. Créez une super grenade
 7. Créez une grenade qui explose après un certain temps
 8. Fonction inventaire (affiche les armes possédées par le joueur et le nombre de munition lorsqu'on appuie sur I)
-9.Changer d'arme
+9. Améliorer la fonction changer d'arme
 
 # Evaluation
 
 L'appréciation du public comptera pour environ 1/3 de la note.
+
 
 
 

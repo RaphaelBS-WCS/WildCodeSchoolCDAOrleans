@@ -15,31 +15,25 @@ public class GrenadeAmmo extends AbstractAmmo{
     private static final  String imagePath = "src/resources/weapons/grenade0.png";
     private static Image image = null;
 
-    private final double initialX;
-    private final double initialY;
+
 
     private static void initImages() {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
     }
 
     public GrenadeAmmo(Double angle) {
-        super(HADOKEN_RECT_SIZE, HADOKEN_RECT_SIZE, EXPLOSION_RADIUS, EXPLOSION_DAMAGE);
-        setDirection(angle);
-        setSpeed(3);
+        super(EXPLOSION_RADIUS, EXPLOSION_DAMAGE);
+        createMovableRect(GRENADE_RECT_SIZE, GRENADE_RECT_SIZE);
+        getMovable().setDirection(angle);
+        getMovable().setSpeed(3);
 
     }
 
     @Override
-    protected void drawMain(Graphics2D g, ImageObserver io) {
-
+    public void drawMain(Graphics2D g, ImageObserver io) {
         if (image == null) {
             initImages();
         }
-
-        //g.setColor(Color.BLUE);
-        //g.setStroke(new BasicStroke(0));
-
-        g.drawImage(image, (int) initialX, (int) initialY, (int) getCenterX(), (int) getCenterY(), io);
-        //g.drawLine((int) initialX, (int) initialY, (int) getCenterX(), (int) getCenterY());
+        g.drawImage(image, (int) (getMovable().getCenterX() - 20), (int) (getMovable().getCenterY() -20), io);
     }
 }

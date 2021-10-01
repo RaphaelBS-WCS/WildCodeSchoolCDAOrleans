@@ -30,7 +30,10 @@ public class Shotgun extends AbstractWeapon {
 
       g.drawImage(image, trans, io);
     } else {
-      g.drawImage(image, (int) Helper.getWormX(), (int) Helper.getWormY(), io);
+      AffineTransform trans = AffineTransform.getTranslateInstance(Helper.getWormX() + 40, Helper.getWormY());
+      trans.scale(-1, 1);
+
+      g.drawImage(image, trans, io);
     }
   }
 

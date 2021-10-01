@@ -38,8 +38,8 @@ public class GrenadeAmmo extends AbstractAmmo{
             initImages();
         }
 
-        g.setColor(Color.BLUE);
-        g.setStroke(new BasicStroke(0));
+        //g.setColor(Color.BLUE);
+        //g.setStroke(new BasicStroke(0));
 
         g.drawImage(image, (int) initialX, (int) initialY, (int) getCenterX(), (int) getCenterY(), io);
         //g.drawLine((int) initialX, (int) initialY, (int) getCenterX(), (int) getCenterY());

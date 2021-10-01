@@ -57,4 +57,8 @@ public abstract class AbstractRectangularBoardElement extends AbstractMovable {
     g.setColor(Color.red);
     g.draw(getInnerRect());
   }
+
+  public double distanceFromPoint(double x, double y) {
+    return Math.sqrt(Math.pow(getCenterX() - x, 2) + Math.pow(getCenterY() - y, 2));
+  }
 }

@@ -21,6 +21,7 @@ public class TimeController implements ActionListener {
   private int activePlayerIndex = 0;
   private AbstractPhase currentPhase;
   private int phaseCount = 0;
+<<<<<<< HEAD
   private int currentNbPlayer = 0;
   private boolean debutant = false;
   public static Map<String, String[]> getTeams() {
@@ -28,6 +29,9 @@ public class TimeController implements ActionListener {
   }
 
   private static Map<String, String[]> teams = new HashMap<>();
+=======
+  private boolean delayedSetNextWorm;
+>>>>>>> 37a9922c24512b917633c34f84273bc54ed69716
 
   public TimeController() {
     instance = this;
@@ -76,6 +80,7 @@ public class TimeController implements ActionListener {
       }
     }
 
+<<<<<<< HEAD
     int i = 0;
     for (String playerName : teams.keySet()) {
         Player player = createPlayer(playerName, colors.get(i), debutant);
@@ -87,11 +92,34 @@ public class TimeController implements ActionListener {
         }
     }
     setCurrentNbPlayer(Helper.getTC().getPlayers().size());
+=======
+    doSetNextWorm();
+>>>>>>> 37a9922c24512b917633c34f84273bc54ed69716
   }
 
   public void setNextWorm() {
-    activePlayerIndex += 1;
-    activePlayerIndex %= players.size();
+    delayedSetNextWorm = true;
+  }
+
+  protected void delayedActions() {
+    if (delayedSetNextWorm) {
+      delayedSetNextWorm = false;
+      doSetNextWorm();
+    }
+  }
+
+  protected void doSetNextWorm() {
+    for (int i = 0; i < players.size(); ++i) {
+      activePlayerIndex += 1;
+      activePlayerIndex %= players.size();
+      if (getActivePlayer().hasWorms()) break;
+    }
+
+    // No player have any worm, it is sad ...
+    if (!getActivePlayer().hasWorms()) {
+      return;
+    }
+
     getActivePlayer().setNextWorm();
     getActivePlayer().initWeapon();
 

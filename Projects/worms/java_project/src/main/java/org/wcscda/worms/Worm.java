@@ -131,12 +131,16 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   }
 
   public void die() {
-    player.getWorms().remove(this);
     removeSelf();
   }
 
   public int getLife() {
     return life;
+  }
+
+  @Override
+  protected void onRemoval() {
+    player.getWorms().remove(this);
   }
 
   @Override

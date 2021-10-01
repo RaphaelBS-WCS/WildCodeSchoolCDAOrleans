@@ -54,6 +54,7 @@ public abstract class Board extends JPanel {
     doMoves();
 
     AbstractDrawableElement.processToBeRemovedAndAdded();
+    Helper.getTC().delayedActions();
 
     new EndOfTurnEvent(Helper.getClock());
   }

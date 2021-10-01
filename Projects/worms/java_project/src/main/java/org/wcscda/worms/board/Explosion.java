@@ -29,7 +29,8 @@ public class Explosion extends AbstractDrawableElement {
     Shape explosion =
         DrawHelper.getCircle(
             centerX, centerY, (int) (radius * (0.1 + getLifeTime() * 0.9 / LIFE_DURATION)));
-    g.setColor(Color.RED);
+    g.setColor(DrawHelper.getColorRGB(255, 255 - 255 * getLifeTime() / LIFE_DURATION, 0));
+
     g.fill(explosion);
 
     if (getLifeTime() == LIFE_DURATION) {

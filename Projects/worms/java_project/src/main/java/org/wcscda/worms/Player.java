@@ -77,6 +77,8 @@ public class Player {
     } else if(currentWeapon instanceof Grenade){
       currentWeapon = new HolyGrenade();
     } else if (currentWeapon instanceof HolyGrenade) {
+      currentWeapon = new Bomb();
+    } else if (currentWeapon instanceof Bomb) {
       currentWeapon = new Hadoken();
     }
   }

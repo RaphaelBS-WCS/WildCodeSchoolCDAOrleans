@@ -11,7 +11,7 @@ import java.awt.image.ImageObserver;
  *   which might mean all of them because of the Shape.intersects
  *   needing a rectangle)
  */
-public abstract class AbstractRectangularBoardElement extends AbstractMovable {
+public abstract class  AbstractRectangularBoardElement extends AbstractMovable {
   private Rectangle2D innerRect;
 
   public AbstractRectangularBoardElement(double x, double y, double rectWidth, double rectHeight) {

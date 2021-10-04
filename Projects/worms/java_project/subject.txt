@@ -8,7 +8,7 @@ CdC version 1.0
 
 # Requirement
 
-Il n'est pas demandé d'interface utilisateur pour les entrées textes et paramétrage, uniquement pour la mécanique interne du jeu.
+Il n'est pas demandé d'interface utilisateur pour leGrenades entrées textes et paramétrage, uniquement pour la mécanique interne du jeu.
 
 ## Requirement obligatoire
 

@@ -1,6 +1,9 @@
 package org.wcscda.worms.board.weapons;
 
 import org.wcscda.worms.Helper;
+import org.wcscda.worms.board.ARBEWithGravityWithHandler;
+import org.wcscda.worms.board.AbstractRectangularBoardElement;
+import org.wcscda.worms.board.IMovableHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,13 +11,11 @@ import java.awt.image.ImageObserver;
 
 public class GrenadeAmmo extends AbstractAmmo{
 
-    private static final int GRENADE_AMMO_RADIUS = 15;
     private static final int GRENADE_RECT_SIZE = 10;
     private static final int EXPLOSION_RADIUS = 100;
     private static final int EXPLOSION_DAMAGE = 30;
     private static final  String imagePath = "src/resources/weapons/grenade0.png";
     private static Image image = null;
-
 
 
     private static void initImages() {
@@ -25,8 +26,7 @@ public class GrenadeAmmo extends AbstractAmmo{
         super(EXPLOSION_RADIUS, EXPLOSION_DAMAGE);
         createMovableRect(GRENADE_RECT_SIZE, GRENADE_RECT_SIZE);
         getMovable().setDirection(angle);
-        getMovable().setSpeed(3);
-
+        getMovable().setSpeed(7);
     }
 
     @Override
@@ -35,5 +35,17 @@ public class GrenadeAmmo extends AbstractAmmo{
             initImages();
         }
         g.drawImage(image, (int) (getMovable().getCenterX() - 20), (int) (getMovable().getCenterY() -20), io);
+    }
+
+    // Override this method if you want to have another movement
+    // behaviour
+    @Override
+    protected void createMovableRect(int rectWidth, int rectHeight) {
+        setMovable(new ARBEWithGravityWithHandler(
+                Helper.getWormX() - rectWidth / 2,
+                Helper.getWormY() - rectHeight / 2,
+                rectWidth,
+                rectHeight,
+                this));
     }
 }

@@ -25,6 +25,10 @@ public abstract class AbstractAmmo implements IMovableHandler {
     return movable;
   }
 
+  protected void setMovable(AbstractRectangularBoardElement movable) {
+    this.movable = movable;
+  }
+
   // Override this method if you want to have another movement
   // behaviour
   protected void createMovableRect(int rectWidth, int rectHeight) {

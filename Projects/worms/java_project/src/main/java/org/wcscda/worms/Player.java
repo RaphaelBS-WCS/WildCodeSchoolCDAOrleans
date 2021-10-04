@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import org.wcscda.worms.board.WormField;
-import org.wcscda.worms.board.weapons.AbstractWeapon;
-import org.wcscda.worms.board.weapons.Grenade;
-import org.wcscda.worms.board.weapons.Hadoken;
-import org.wcscda.worms.board.weapons.Shotgun;
+import org.wcscda.worms.board.weapons.*;
 
 public class Player {
   private final String name;
@@ -73,12 +70,14 @@ public class Player {
     if (currentWeapon.isChangingWeaponDisabled()) {
       return;
     }
-
     if (currentWeapon instanceof Hadoken) {
       currentWeapon = new Shotgun();
-    } else {
+    } else  if (currentWeapon instanceof  Shotgun){
       currentWeapon = new Grenade();
-      //currentWeapon = new Hadoken();
+    } else if(currentWeapon instanceof Grenade){
+      currentWeapon = new HolyGrenade();
+    } else if (currentWeapon instanceof HolyGrenade) {
+      currentWeapon = new Hadoken();
     }
   }
 

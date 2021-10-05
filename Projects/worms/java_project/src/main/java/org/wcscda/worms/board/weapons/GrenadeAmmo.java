@@ -2,9 +2,6 @@ package org.wcscda.worms.board.weapons;
 
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.board.ARBEWithGravityWithHandler;
-import org.wcscda.worms.board.AbstractRectangularBoardElement;
-import org.wcscda.worms.board.IMovableHandler;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;

@@ -14,6 +14,7 @@ public class BombAmmo extends AbstractAmmo{
     private static final int EXPLOSION_DAMAGE = 30;
     private static final  String imagePath = "src/resources/weapons/timebomb.png";
     private static Image image = null;
+    //private int initTime = Helper.getClock();
 
 
     private static void initImages() {

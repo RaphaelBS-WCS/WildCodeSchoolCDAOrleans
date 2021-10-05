@@ -24,6 +24,8 @@ public class HadokenAmmo extends AbstractAmmo {
 
     initialX = Helper.getWormX();
     initialY = Helper.getWormY();
+
+    setInitialPosition();
   }
 
   @Override

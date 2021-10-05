@@ -23,8 +23,11 @@ public class KeyboardController extends KeyAdapter {
     } else {
       keyAsString = KeyEvent.getKeyText(key);
     }
-    System.err.println("Key typed " + keyAsString);
 
+    sendKey(keyAsString);
+  }
+
+  protected void sendKey(String keyAsString) {
     TimeController.getInstance().getCurrentPhase().forwardKeyPressed(keyAsString);
   }
 
@@ -40,4 +43,6 @@ public class KeyboardController extends KeyAdapter {
 
     return localizationCorrectionMap;
   }
+
+  public void onIterationBegin() {}
 }

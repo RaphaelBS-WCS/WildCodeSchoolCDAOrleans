@@ -8,7 +8,14 @@ import org.wcscda.worms.Config;
 public class WormLauncher extends JFrame {
   private static final long serialVersionUID = 1L;
 
+  public static WormLauncher getInstance() {
+    return instance;
+  }
+
+  private static WormLauncher instance;
+
   public WormLauncher() {
+    instance = this;
     initUI();
   }
 

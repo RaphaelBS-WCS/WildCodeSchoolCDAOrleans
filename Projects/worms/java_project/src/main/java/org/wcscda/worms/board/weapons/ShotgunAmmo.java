@@ -18,6 +18,8 @@ public class ShotgunAmmo extends AbstractAmmo {
     createMovableRect(SHOTGUN_RECT_SIZE, SHOTGUN_RECT_SIZE);
     getMovable().setDirection(angle);
     getMovable().setSpeed(5);
+
+    setInitialPosition();
   }
 
   private static void initImages() {

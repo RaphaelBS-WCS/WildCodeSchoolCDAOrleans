@@ -24,6 +24,8 @@ public class GrenadeAmmo extends AbstractAmmo{
         createMovableRect(GRENADE_RECT_SIZE, GRENADE_RECT_SIZE);
         getMovable().setDirection(angle);
         getMovable().setSpeed(7);
+
+        setInitialPosition();
     }
 
     @Override

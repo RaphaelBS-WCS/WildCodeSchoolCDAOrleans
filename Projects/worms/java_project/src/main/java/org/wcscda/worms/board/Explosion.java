@@ -37,4 +37,5 @@ public class Explosion extends AbstractDrawableElement {
       removeSelf();
     }
   }
+
 }

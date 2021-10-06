@@ -19,6 +19,13 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
   private static Map<String, Integer> warmsInvetory = new HashMap<>();
+
+
+    warmsInvetory.put("Grenade", 3);
+    warmsInvetory.put("Bomb", 2);
+    warmsInvetory.put("HolyGrenade", 1);
+    warmsInvetory.put("Shotgun", 6);
+
   private static Map<Object, Object> mainInventory = new HashMap<>();
 
   private static final int imageHeight = 60;
@@ -33,6 +40,8 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   private final Player player;
   private boolean isUserMoving;
   private ArrayList<Worm> worms = new ArrayList<Worm>();
+
+
 
   private static void initImages() {
     wormLF =
@@ -74,6 +83,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     g.setColor(player.getColor());
     g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
     g.drawString("" + this.getName(), (int) getX() + 5, (int) getY() - 35);
+
   }
 
   private int getShownLife() {
@@ -123,7 +133,20 @@ public class Worm extends ARBEWithGravity implements IVisitable {
       life -= damage * 1.25;
     } else {
       life -= damage;
-    }/*
+    }
+    System.out.println("test");
+    for (Map.Entry<Object, Object> entry : mainInventory.entrySet()) {
+      Map<String, Integer> inventory = (Map<String, Integer>) entry.getValue();
+      //g.drawString(" " + Helper.getActiveWorm(), 80, 80);
+
+      for (String weapon : inventory.keySet()) {
+        //g.drawString("toto" + weapon, 85, 85);
+        System.out.println(weapon);
+      }
+    }
+
+
+    /*
     for (Object playe : TimeController.getTeams()) {
       System.out.println(playe);
     }*/
@@ -155,7 +178,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   public static Map<String, Integer> getWarmsInvetory() {
     return warmsInvetory;
   }
-
+/*
   public static void setWarmsInvetory(Map<String, Integer> warmsInvetory) {
     warmsInvetory.put("Grenade", 3);
     warmsInvetory.put("Bomb", 2);
@@ -163,7 +186,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     warmsInvetory.put("Shotgun", 6);
 
     Worm.warmsInvetory = warmsInvetory;
-  }
+  }*/
 
   public static Map<Object, Object> getMainInventory() {
     return mainInventory;
@@ -180,12 +203,15 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     this.mainInventory = mainInventory;
   }
 
+
+
   public static void drawInventory(Graphics2D g, ImageObserver io) {
-    for (Map.Entry<Object, Object> entry: mainInventory.entrySet()) {
-      String[] inventory = (String[]) entry.getValue();
+    for (Map.Entry<Object, Object> entry : mainInventory.entrySet()) {
+      Map<String, Integer> inventory = (Map<String, Integer>) entry.getValue();
       g.drawString(" " + Helper.getActiveWorm(), 700, 700);
-      for (int i = 0; i < inventory.length; i++) {
-        g.drawString("" + inventory[i], 700, 720);
+
+      for (String weapon : inventory.keySet()) {
+        g.drawString("" + weapon, 700, 720);
       }
     }
   }

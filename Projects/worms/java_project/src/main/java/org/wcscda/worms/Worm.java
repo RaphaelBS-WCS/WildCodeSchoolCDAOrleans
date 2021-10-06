@@ -5,16 +5,21 @@ import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractBoardElement;
 import org.wcscda.worms.board.IMovableVisitor;
 import org.wcscda.worms.board.IVisitable;
+import org.wcscda.worms.board.weapons.*;
 import org.wcscda.worms.gamemechanism.Board;
 
 public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
+  private static Map<String, Integer> warmsInvetory = new HashMap<>();
+  private static Map<Object, Object> mainInventory = new HashMap<>();
 
   private static final int imageHeight = 60;
   private static final int imageWidth = 54;
@@ -48,6 +53,8 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     this.player = player;
     this.name = name;
   }
+
+
 
   private static int getRandomStartingX() {
     return RandomGenerator.getInstance().nextInt(Board.getBWIDTH() - imageWidth);
@@ -142,7 +149,41 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     visitor.visit(this, prevPosition);
   }
 
-  public void inventaire() {
+  public static Map<String, Integer> getWarmsInvetory() {
+    return warmsInvetory;
+  }
 
+  public static void setWarmsInvetory(Map<String, Integer> warmsInvetory) {
+    warmsInvetory.put("Grenade", 3);
+    warmsInvetory.put("Bomb", 2);
+    warmsInvetory.put("HolyGrenade", 1);
+    warmsInvetory.put("Shotgun", 6);
+
+    Worm.warmsInvetory = warmsInvetory;
+  }
+
+  public static Map<Object, Object> getMainInventory() {
+    return mainInventory;
+  }
+
+  public void setMainInventory(Map<Object, Object> mainInventory) {
+
+    for (Player player : Helper.getTC().getPlayers()) {
+      System.out.println(player.getWorms());
+      for( Worm worm : player.getWorms()) {
+        mainInventory.put(worm, warmsInvetory);
+      }
+    }
+    this.mainInventory = mainInventory;
+  }
+
+  public static void drawInventory(Graphics2D g, ImageObserver io) {
+    for (Map.Entry<Object, Object> entry: mainInventory.entrySet()) {
+      String[] inventory = (String[]) entry.getValue();
+      g.drawString(" " + Helper.getActiveWorm(), 700, 700);
+      for (int i = 0; i < inventory.length; i++) {
+        g.drawString("" + inventory[i], 700, 720);
+      }
+    }
   }
 }

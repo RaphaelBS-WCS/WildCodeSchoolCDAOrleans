@@ -37,8 +37,7 @@ public class TimeController implements ActionListener {
   private static Map<String, String[]> teams = new HashMap<>();
   private boolean delayedSetNextWorm;
   private ScriptPlayer scriptPlayer;
-  private static Map<String, Boolean> warmsInvetory = new HashMap<>();
-  private static Map<Object, Object> mainArray = new HashMap<>();
+
 
   public ScriptPlayer getScriptPlayer() {
     return scriptPlayer;
@@ -67,7 +66,7 @@ public class TimeController implements ActionListener {
   private void initGame() {
     board = new PhysicalController();
 
-    warmsInvetory.put("Grenade", true);
+
 
     ArrayList<Color> colors = new ArrayList<>();
     colors.add(Color.RED);

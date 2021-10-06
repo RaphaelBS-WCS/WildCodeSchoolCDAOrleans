@@ -44,7 +44,7 @@ public class WormMovingPhase extends AbstractPhase {
     }
 
     if (key.equals("I")) {
-
+      Worm.drawInventory(Graphics2D g, ImageObserver io);
     }
   }
 

@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import org.wcscda.worms.board.ARBEWithGravity;
 import org.wcscda.worms.board.AbstractBoardElement;
@@ -26,6 +27,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   private final String name;
   private final Player player;
   private boolean isUserMoving;
+  private ArrayList<Worm> worms = new ArrayList<Worm>();
 
   private static void initImages() {
     wormLF =
@@ -68,15 +70,12 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   }
 
   private int getShownLife() {
-
     if (life < shownLife) {
       shownLife--;
     } else if (life > shownLife) {
       shownLife++;
     }
-
     return this.shownLife;
-
   }
 
   private boolean isRightFacing() {
@@ -143,4 +142,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     visitor.visit(this, prevPosition);
   }
 
+  public void inventaire() {
+
+  }
 }

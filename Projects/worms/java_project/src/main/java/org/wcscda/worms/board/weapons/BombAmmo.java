@@ -37,10 +37,8 @@ public class BombAmmo extends AbstractAmmo{
             initImages();
         }
         g.drawImage(image, (int) (getMovable().getCenterX() - 20), (int) (getMovable().getCenterY() -20), io);
-
         if (initTime + 140 < Helper.getClock()) {
             explode();
-
             Helper.getCurrentWeapon().triggerAmmoExplosion();
         }
     }

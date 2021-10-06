@@ -37,6 +37,8 @@ public class TimeController implements ActionListener {
   private static Map<String, String[]> teams = new HashMap<>();
   private boolean delayedSetNextWorm;
   private ScriptPlayer scriptPlayer;
+  private static Map<String, Boolean> warmsInvetory = new HashMap<>();
+  private static Map<Object, Object> mainArray = new HashMap<>();
 
   public ScriptPlayer getScriptPlayer() {
     return scriptPlayer;
@@ -64,6 +66,8 @@ public class TimeController implements ActionListener {
 
   private void initGame() {
     board = new PhysicalController();
+
+    warmsInvetory.put("Grenade", true);
 
     ArrayList<Color> colors = new ArrayList<>();
     colors.add(Color.RED);
@@ -94,8 +98,16 @@ public class TimeController implements ActionListener {
       for (int iW = 0; iW < nbrWorms; ++iW) {
         System.out.println("Veuillez saisir le nom du worm " + (iW +1) + ": ");
         teams.get(playerName)[iW] = scan.next();
+        //private static Map<String, String[]> teams2 = new HashMap<>();
       }
     }
+      for (Object team : teams.entrySet()) {
+        System.out.println(team);
+        mainArray.put(team, warmsInvetory);
+      }
+      //mainArray.put(teams, warmsInvetory);
+
+
 
     int i = 0;
     for (String playerName : teams.keySet()) {

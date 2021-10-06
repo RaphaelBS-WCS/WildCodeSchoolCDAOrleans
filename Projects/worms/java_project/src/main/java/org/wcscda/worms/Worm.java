@@ -123,7 +123,10 @@ public class Worm extends ARBEWithGravity implements IVisitable {
       life -= damage * 1.25;
     } else {
       life -= damage;
-    }
+    }/*
+    for (Object playe : TimeController.getTeams()) {
+      System.out.println(playe);
+    }*/
 
     if (life <= 0) {
       Player.isPlayerDie();

@@ -100,13 +100,6 @@ public class TimeController implements ActionListener {
         //private static Map<String, String[]> teams2 = new HashMap<>();
       }
     }
-      for (Object team : teams.entrySet()) {
-        System.out.println(team);
-        mainArray.put(team, warmsInvetory);
-      }
-      //mainArray.put(teams, warmsInvetory);
-
-
 
     int i = 0;
     for (String playerName : teams.keySet()) {

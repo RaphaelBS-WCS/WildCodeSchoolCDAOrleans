@@ -19,7 +19,7 @@ public class BombAmmo extends AbstractAmmo{
     private int initTime = 0;
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 50, 0);
     }
 
     public BombAmmo(Double angle) {
@@ -38,7 +38,7 @@ public class BombAmmo extends AbstractAmmo{
         }
         g.drawImage(image, (int) (getMovable().getCenterX() - 20), (int) (getMovable().getCenterY() -20), io);
 
-        if (initTime + 100 < Helper.getClock()) {
+        if (initTime + 140 < Helper.getClock()) {
             explode();
 
             Helper.getCurrentWeapon().triggerAmmoExplosion();

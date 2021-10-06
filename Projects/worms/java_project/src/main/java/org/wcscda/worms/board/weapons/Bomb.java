@@ -14,7 +14,7 @@ public class Bomb extends AbstractWeapon {
     private static Image image = null;
 
     private static void initImages() {
-        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
+        image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 50, 0);
     }
 
     public void draw(Graphics2D g, ImageObserver io) {

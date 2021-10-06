@@ -7,7 +7,5 @@ import java.awt.image.ImageObserver;
 public interface IMovableHandler {
   void drawMain(Graphics2D g, ImageObserver io);
 
-  Boolean isColidingWithAdditionnal(Shape s);
-
   void colideWith(AbstractBoardElement movable, Point2D prevPosition);
 }

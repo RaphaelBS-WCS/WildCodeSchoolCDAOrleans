@@ -70,4 +70,8 @@ public abstract class AbstractDrawableElement implements Comparable<AbstractDraw
   }
 
   protected void onRemoval() {}
+
+  // NRO 2021-10-05 : Override if you want something to be
+  //  checked on iteration start
+  public void onIterationBegin() {}
 }

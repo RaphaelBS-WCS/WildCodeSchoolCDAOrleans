@@ -25,6 +25,8 @@ public class HolyGrenadeAmmo extends AbstractAmmo{
         createMovableRect(GRENADE_RECT_SIZE, GRENADE_RECT_SIZE);
         getMovable().setDirection(angle);
         getMovable().setSpeed(10);
+
+        setInitialPosition();
     }
 
     @Override

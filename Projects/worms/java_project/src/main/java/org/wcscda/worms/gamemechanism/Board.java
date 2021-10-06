@@ -2,6 +2,12 @@ package org.wcscda.worms.gamemechanism;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.board.*;
@@ -50,6 +56,11 @@ public abstract class Board extends JPanel {
     if (isGameFinished()) {
       Helper.getTC().setCurrentPhase(new EndOfGamePhase());
     }
+
+    AbstractDrawableElement.getAllDrawable().forEach(AbstractDrawableElement::onIterationBegin);
+
+    Helper.getTC().getKeyboardController().onIterationBegin();
+
     repaint();
     doMoves();
 
@@ -65,6 +76,28 @@ public abstract class Board extends JPanel {
     return false;
   }
 
+  public void makeScreenshot() {
+    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    makeScreenshot("screenshot_" + timeStamp + ".png");
+  }
+
+  public void makeScreenshot(String filename) {
+    Rectangle rec = getBounds();
+    BufferedImage bufferedImage =
+        new BufferedImage(rec.width, rec.height, BufferedImage.TYPE_INT_ARGB);
+    paint(bufferedImage.getGraphics());
+
+    try {
+      // Create temp file
+      File filePath = new File(filename);
+
+      // Use the ImageIO API to write the bufferedImage to a temporary file
+      ImageIO.write(bufferedImage, "png", filePath);
+    } catch (IOException ioe) {
+      ioe.printStackTrace();
+    }
+  }
+
   protected abstract void doMoves();
 
   public static int getBWIDTH() {
@@ -77,5 +110,9 @@ public abstract class Board extends JPanel {
 
   public WormField getWormField() {
     return wormField;
+  }
+
+  public void addWindowListener(WindowListener w) {
+    WormLauncher.getInstance().addWindowListener(w);
   }
 }

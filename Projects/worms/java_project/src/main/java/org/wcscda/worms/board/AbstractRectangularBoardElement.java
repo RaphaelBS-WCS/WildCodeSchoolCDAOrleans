@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
+import org.wcscda.worms.utils.MathHelper;
 
 /* NRO 2021-09-27
  *   This class handle movable objects represented by a rectangle (
@@ -59,6 +60,6 @@ public abstract class  AbstractRectangularBoardElement extends AbstractMovable {
   }
 
   public double distanceFromPoint(double x, double y) {
-    return Math.sqrt(Math.pow(getCenterX() - x, 2) + Math.pow(getCenterY() - y, 2));
+    return MathHelper.distance(getCenterX() - x, getCenterY() - y);
   }
 }

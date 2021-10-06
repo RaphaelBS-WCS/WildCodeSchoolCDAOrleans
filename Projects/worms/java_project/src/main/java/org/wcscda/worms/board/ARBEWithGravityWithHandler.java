@@ -40,7 +40,7 @@ public class ARBEWithGravityWithHandler extends ARBEWithGravity {
     public void collideWith(AbstractBoardElement movable, Point2D prevPosition) {
         movableHandler.colideWith(movable, prevPosition);
     }
-
+/*
     @Override
     public boolean isCollidingWith(Shape s) {
         Boolean fromAdditionnal = movableHandler.isColidingWithAdditionnal(s);
@@ -49,7 +49,7 @@ public class ARBEWithGravityWithHandler extends ARBEWithGravity {
         }
         return super.isCollidingWith(s);
     }
-
+*/
     @Override
     public void rawMove(double x, double y) {
         super.rawMove(x, y);

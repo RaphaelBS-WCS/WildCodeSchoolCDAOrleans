@@ -20,6 +20,13 @@
 			<version>4.13</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.xml/jaxb-impl -->
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-media -->
 		<!--  <dependency>

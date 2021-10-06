@@ -13,10 +13,15 @@ public abstract class ARBEWithGravity extends AbstractRectangularBoardElement {
   private Rectangle2D supportRect;
 
   public ARBEWithGravity(double x, double y, int rectWidth, int rectHeight) {
+    this(x, y, rectWidth, rectHeight, STANDING_RECTANGLE_HEIGHT);
+  }
+
+  public ARBEWithGravity(
+      double x, double y, int rectWidth, int rectHeight, int standingRectHeight) {
     super(x, y, rectWidth, rectHeight);
     supportRect =
         new Rectangle2D.Double(
-            x, y + rectHeight + STANDING_RECTANGLE_HEIGHT, rectWidth, STANDING_RECTANGLE_HEIGHT);
+            x, y + rectHeight + standingRectHeight, rectWidth, standingRectHeight);
   }
 
   public Rectangle2D getOuterRect() {

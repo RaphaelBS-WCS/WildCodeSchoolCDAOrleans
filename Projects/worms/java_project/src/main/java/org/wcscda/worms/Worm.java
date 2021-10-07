@@ -18,33 +18,6 @@ import org.wcscda.worms.gamemechanism.Board;
 public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
- public static class WeaponAndMunition {
-    private AbstractWeapon weapon;
-    private Integer ammoNumber;
-
-    public WeaponAndMunition(AbstractWeapon weapon, Integer ammoNumber) {
-      this.weapon = weapon;
-      this.ammoNumber =  ammoNumber;
-    }
-
-    public AbstractWeapon getWeapon() {
-      return weapon;
-    }
-
-    public void setWeapon(AbstractWeapon weapon) {
-      this.weapon = weapon;
-    }
-
-    public Integer getAmmoNumber() {
-      return ammoNumber;
-    }
-
-    public void setAmmoNumber(Integer ammoNumber) {
-      this.ammoNumber = ammoNumber;
-    }
-  }
-
-
 
   private static final int imageHeight = 60;
   private static final int imageWidth = 54;
@@ -201,10 +174,10 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     ArrayList<WeaponAndMunition> warmsInventory = new ArrayList<>();
 
     warmsInventory.add(new WeaponAndMunition(new Hadoken(), null));
-    warmsInventory.add(new WeaponAndMunition(new Grenade(), 2));
-    warmsInventory.add(new WeaponAndMunition(new Bomb(), 0));
-    warmsInventory.add(new WeaponAndMunition(new HolyGrenade(), 0));
-    warmsInventory.add(new WeaponAndMunition(new Shotgun(), 1));
+    warmsInventory.add(new WeaponAndMunition(new Grenade(), 4));
+    warmsInventory.add(new WeaponAndMunition(new Bomb(), 2));
+    warmsInventory.add(new WeaponAndMunition(new HolyGrenade(), 1));
+    warmsInventory.add(new WeaponAndMunition(new Shotgun(), 6));
 
     this.warmsInventory = warmsInventory;
   }

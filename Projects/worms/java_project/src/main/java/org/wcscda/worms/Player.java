@@ -69,7 +69,7 @@ public class Player {
    */
   public void changeWeapon() {
 
-    ArrayList<Worm.WeaponAndMunition> wormInventory = new ArrayList<>();
+    ArrayList<WeaponAndMunition> wormInventory = new ArrayList<>();
 
     for (int i = 0; i < Helper.getActiveWorm().getWarmsInventory().size(); i++) {
       if (Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber() == null || Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber() > 0) {

@@ -200,12 +200,12 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   public void setWarmsInventory() {
 
     ArrayList<WeaponAndMunition> warmsInventory = new ArrayList<>();
-    
-    warmsInventory.add(new WeaponAndMunition(new Grenade(), 3));
-    warmsInventory.add(new WeaponAndMunition(new Bomb(), 2));
-    warmsInventory.add(new WeaponAndMunition(new HolyGrenade(), 3));
-    warmsInventory.add(new WeaponAndMunition(new Shotgun(), 4));
+
     warmsInventory.add(new WeaponAndMunition(new Hadoken(), null));
+    warmsInventory.add(new WeaponAndMunition(new Grenade(), 2));
+    warmsInventory.add(new WeaponAndMunition(new Bomb(), 0));
+    warmsInventory.add(new WeaponAndMunition(new HolyGrenade(), 0));
+    warmsInventory.add(new WeaponAndMunition(new Shotgun(), 1));
 
     this.warmsInventory = warmsInventory;
   }

@@ -13,7 +13,6 @@ public class Player {
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
   private static boolean debutant = false;
-  private static Iterator<AbstractWeapon> itr2;
 
 
   public Player(String name, Color color, Boolean debutant) {
@@ -70,17 +69,26 @@ public class Player {
    */
   public void changeWeapon() {
 
-    for (int i = 0; i <= Helper.getActiveWorm().getWarmsInventory().size(); i++) {
-      if (currentWeapon.equals(Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon())) {
-        if (i == Helper.getActiveWorm().getWarmsInventory().size() -1) {
+    ArrayList<Worm.WeaponAndMunition> wormInventory = new ArrayList<>();
+
+    for (int i = 0; i < Helper.getActiveWorm().getWarmsInventory().size(); i++) {
+      if (Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber() == null || Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber() > 0) {
+        wormInventory.add(Helper.getActiveWorm().getWarmsInventory().get(i));
+      }
+    }
+
+    for (int i = 0; i <= wormInventory.size(); i++) {
+      if (currentWeapon.equals(wormInventory.get(i).getWeapon())) {
+        if (i == wormInventory.size() - 1) {
           i = 0;
-          currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon();
+          currentWeapon = wormInventory.get(i).getWeapon();
           break;
         }
-        currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i+1).getWeapon();
+        currentWeapon = wormInventory.get(i + 1).getWeapon();
         break;
       }
     }
+
   }
 
   public void initWeapon() {

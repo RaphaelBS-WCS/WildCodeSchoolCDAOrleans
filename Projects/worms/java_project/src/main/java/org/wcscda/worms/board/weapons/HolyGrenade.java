@@ -13,6 +13,13 @@ public class HolyGrenade extends AbstractWeapon {
     private static final  String imagePath = "src/resources/weapons/Holygrenadeicon.png";
     private static Image image = null;
 
+    public String getName() {
+        return name;
+    }
+
+    private static String name = "Holy Grenade";
+
+
     private static void initImages() {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(60, 60, 0);
     }

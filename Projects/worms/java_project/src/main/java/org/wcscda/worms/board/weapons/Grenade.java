@@ -13,6 +13,12 @@ public class Grenade extends AbstractWeapon {
     private static final  String imagePath = "src/resources/weapons/grenade0.png";
     private static Image image = null;
 
+    public String getName() {
+        return name;
+    }
+
+    private static String name = "Grenade";
+
     private static void initImages() {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
     }

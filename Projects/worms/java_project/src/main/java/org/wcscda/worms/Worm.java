@@ -18,15 +18,10 @@ import org.wcscda.worms.gamemechanism.Board;
 public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
-  private static Map<String, Integer> warmsInvetory = new HashMap<>();
 
 
-    warmsInvetory.put("Grenade", 3);
-    warmsInvetory.put("Bomb", 2);
-    warmsInvetory.put("HolyGrenade", 1);
-    warmsInvetory.put("Shotgun", 6);
 
-  private static Map<Object, Object> mainInventory = new HashMap<>();
+  private Map<AbstractWeapon, Integer> warmsInventory = null;
 
   private static final int imageHeight = 60;
   private static final int imageWidth = 54;
@@ -39,6 +34,9 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   private final String name;
   private final Player player;
   private boolean isUserMoving;
+
+
+  private boolean inventoryView = false;
   private ArrayList<Worm> worms = new ArrayList<Worm>();
 
 
@@ -61,9 +59,8 @@ public class Worm extends ARBEWithGravity implements IVisitable {
 
     this.player = player;
     this.name = name;
+
   }
-
-
 
   private static int getRandomStartingX() {
     return RandomGenerator.getInstance().nextInt(Board.getBWIDTH() - imageWidth);
@@ -75,6 +72,11 @@ public class Worm extends ARBEWithGravity implements IVisitable {
 
   @Override
   protected void drawMain(Graphics2D g, ImageObserver io) {
+    int x = 500;
+    int y = 100;
+
+
+
     if (wormLF == null) initImages();
     Image worm = isRightFacing() ? wormRF : wormLF;
 
@@ -84,6 +86,12 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
     g.drawString("" + this.getName(), (int) getX() + 5, (int) getY() - 35);
 
+    if(inventoryView) {
+      for (Map.Entry<AbstractWeapon, Integer> weapon : getWarmsInventory().entrySet()) {
+        g.drawString("" + weapon.getKey().getName() + ": " + weapon.getValue(), x, y);
+        y += 15;
+      }
+    }
   }
 
   private int getShownLife() {
@@ -134,22 +142,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     } else {
       life -= damage;
     }
-    System.out.println("test");
-    for (Map.Entry<Object, Object> entry : mainInventory.entrySet()) {
-      Map<String, Integer> inventory = (Map<String, Integer>) entry.getValue();
-      //g.drawString(" " + Helper.getActiveWorm(), 80, 80);
 
-      for (String weapon : inventory.keySet()) {
-        //g.drawString("toto" + weapon, 85, 85);
-        System.out.println(weapon);
-      }
-    }
-
-
-    /*
-    for (Object playe : TimeController.getTeams()) {
-      System.out.println(playe);
-    }*/
 
     if (life <= 0) {
       Player.isPlayerDie();
@@ -175,44 +168,30 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     visitor.visit(this, prevPosition);
   }
 
-  public static Map<String, Integer> getWarmsInvetory() {
-    return warmsInvetory;
-  }
-/*
-  public static void setWarmsInvetory(Map<String, Integer> warmsInvetory) {
-    warmsInvetory.put("Grenade", 3);
-    warmsInvetory.put("Bomb", 2);
-    warmsInvetory.put("HolyGrenade", 1);
-    warmsInvetory.put("Shotgun", 6);
 
-    Worm.warmsInvetory = warmsInvetory;
-  }*/
-
-  public static Map<Object, Object> getMainInventory() {
-    return mainInventory;
+  public Map<AbstractWeapon, Integer> getWarmsInventory() {
+    return warmsInventory;
   }
 
-  public void setMainInventory(Map<Object, Object> mainInventory) {
+  public void setWarmsInventory() {
 
-    for (Player player : Helper.getTC().getPlayers()) {
-      System.out.println(player.getWorms());
-      for( Worm worm : player.getWorms()) {
-        mainInventory.put(worm, warmsInvetory);
-      }
-    }
-    this.mainInventory = mainInventory;
+    Map<AbstractWeapon, Integer> warmsInventory = new HashMap<>();
+
+    warmsInventory.put(new Grenade(), 1);
+    warmsInventory.put(new Bomb(), 2);
+    warmsInventory.put(new HolyGrenade(), 3);
+    warmsInventory.put(new Shotgun(), 4);
+    warmsInventory.put(new Hadoken(), null);
+
+    this.warmsInventory = warmsInventory;
   }
 
+  public boolean isInventoryView() {
+    return inventoryView;
+  }
 
-
-  public static void drawInventory(Graphics2D g, ImageObserver io) {
-    for (Map.Entry<Object, Object> entry : mainInventory.entrySet()) {
-      Map<String, Integer> inventory = (Map<String, Integer>) entry.getValue();
-      g.drawString(" " + Helper.getActiveWorm(), 700, 700);
-
-      for (String weapon : inventory.keySet()) {
-        g.drawString("" + weapon, 700, 720);
-      }
-    }
+  public void setInventoryView(boolean inventoryView) {
+    this.inventoryView = inventoryView;
   }
 }
+

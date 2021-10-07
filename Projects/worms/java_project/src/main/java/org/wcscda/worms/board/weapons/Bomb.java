@@ -12,6 +12,12 @@ public class Bomb extends AbstractWeapon {
 
     private static final  String imagePath = "src/resources/weapons/timebomb.png";
     private static Image image = null;
+    private static String name = "Bomb";
+    public  String getName() {
+        return name;
+    }
+
+
 
     private static void initImages() {
         image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 50, 0);

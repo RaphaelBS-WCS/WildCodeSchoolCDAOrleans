@@ -13,6 +13,12 @@ public class Shotgun extends AbstractWeapon {
   private static Image image = null;
   private int nbFiredShoots = 0;
 
+  public String getName() {
+    return name;
+  }
+
+  private static String name = "Shotgun";
+
   public static void initImages() {
     image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
   }

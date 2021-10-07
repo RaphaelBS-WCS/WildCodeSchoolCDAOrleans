@@ -2,8 +2,8 @@ package org.wcscda.worms;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-import org.wcscda.worms.board.WormField;
 import org.wcscda.worms.board.weapons.*;
 
 public class Player {
@@ -13,6 +13,8 @@ public class Player {
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
   private static boolean debutant = false;
+  private static Iterator<AbstractWeapon> itr2;
+
 
   public Player(String name, Color color, Boolean debutant) {
     this.name = name;
@@ -32,7 +34,7 @@ public class Player {
   public Worm createWorm(String nom) {
     Worm worm = new Worm(this, nom);
     worms.add(worm);
-
+    worm.setWarmsInventory();
     return worm;
   }
 
@@ -70,18 +72,18 @@ public class Player {
     if (currentWeapon.isChangingWeaponDisabled()) {
       return;
     }
-    if (currentWeapon instanceof Hadoken) {
-      currentWeapon = new Shotgun();
-    } else  if (currentWeapon instanceof  Shotgun){
-      currentWeapon = new Grenade();
-    } else if(currentWeapon instanceof Grenade){
-      currentWeapon = new HolyGrenade();
-    } else if (currentWeapon instanceof HolyGrenade) {
-      currentWeapon = new Bomb();
-    } else if (currentWeapon instanceof Bomb) {
-      currentWeapon = new Hadoken();
+
+    while (itr2.hasNext()) {
+      if (currentWeapon == itr2) {
+        currentWeapon = itr2.next();
+      }
     }
   }
+
+  public void setItr2() {
+    Player.itr2 = Helper.getActiveWorm().getWarmsInventory().keySet().iterator();;
+  }
+
 
   public void initWeapon() {
     currentWeapon = new Hadoken();

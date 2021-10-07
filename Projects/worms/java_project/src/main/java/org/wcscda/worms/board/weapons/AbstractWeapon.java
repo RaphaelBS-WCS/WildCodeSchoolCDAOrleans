@@ -77,4 +77,8 @@ public abstract class AbstractWeapon {
   public void triggerAmmoExplosion() {
     Helper.getTC().setNextWorm();
   }
+
+  public String getName() {
+    return null;
+  }
 }

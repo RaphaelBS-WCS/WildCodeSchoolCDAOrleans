@@ -114,7 +114,7 @@ public class TimeController implements ActionListener {
       } else {
         debutant = false;
       }
-      int iColor = (int)(Math.random() * ((colors.size() + 1)));
+      int iColor = (int)(Math.random() *  colors.size());
 
       Player player = createPlayer(playerName, colors.get(iColor), debutant);
       for (int iW = 0; iW < nbrWorms; ++iW) {

@@ -65,7 +65,7 @@ public class WormField extends AbstractBoardElement {
     int i = 15;
     for ( Player player : Helper.getTC().getPlayers()) {
       g.setColor(player.getColor());
-      Font font = new Font("helvetica", Font.PLAIN, 12);
+      Font font = new Font("helvetica", Font.PLAIN, 14);
       g.setFont(font);
       if (player.getPlayerLife() == 0) {
         Map attributes = font.getAttributes();
@@ -80,12 +80,15 @@ public class WormField extends AbstractBoardElement {
     if (Helper.getTC().getCurrentNbPlayer() == 1) {
       for (Player player : Helper.getTC().getPlayers()) {
         if (player.getPlayerLife() > 0) {
-          g.drawString(player.getName() + " win!!!!", 350, 150);
+          g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+          g.drawString(player.getName() + " win!!!!", 450, 100);
           break;
         }
       }
+    } else if (Helper.getTC().getCurrentNbPlayer() == -1) {
+       g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+       g.drawString("Draw!!!", 500, 100);
     }
-
   }
 
   public Area getFrontier() {

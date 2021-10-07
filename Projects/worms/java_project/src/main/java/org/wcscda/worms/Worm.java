@@ -1,7 +1,7 @@
 package org.wcscda.worms;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.font.TextAttribute;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
@@ -72,16 +72,15 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     int x = 500;
     int y = 100;
 
-
-
     if (wormLF == null) initImages();
     Image worm = isRightFacing() ? wormRF : wormLF;
 
     g.drawImage(worm, getX() - rectPadding, getY() - rectPadding, io);
-
+    Font font = new Font("helvetica", Font.PLAIN, 14);
+    g.setFont(font);
     g.setColor(player.getColor());
-    g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 15);
-    g.drawString("" + this.getName(), (int) getX() + 5, (int) getY() - 35);
+    g.drawString("" + getShownLife(), (int) getX(), (int) getY() - 17);
+    g.drawString("" + this.getName(), (int) getX() + 5, (int) getY() - 37);
 
     if(inventoryView) {
       for (WeaponAndMunition weapon : getWarmsInventory()) {
@@ -147,6 +146,7 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   }
 
   public void die() {
+    System.out.println(Helper.getTC().getCurrentNbPlayer());
     removeSelf();
   }
 

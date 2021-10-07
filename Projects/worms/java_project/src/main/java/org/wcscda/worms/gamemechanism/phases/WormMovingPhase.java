@@ -41,7 +41,7 @@ public class WormMovingPhase extends AbstractPhase {
     }
 
     if (key.equals("W")) {
-      Helper.getActivePlayer().setItr2();
+      //Helper.getActivePlayer().setItr2();
       Helper.getActivePlayer().changeWeapon();
     }
 

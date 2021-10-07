@@ -10,10 +10,15 @@ public class Player {
   private final String name;
   private final Color color;
   private final ArrayList<Worm> worms = new ArrayList<Worm>();
+
+  public void setCurrentWeapon(AbstractWeapon currentWeapon) {
+    this.currentWeapon = currentWeapon;
+  }
+
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
   private static boolean debutant = false;
-  private static Iterator<AbstractWeapon> itr2;
+  //private static Iterator<AbstractWeapon> itr2 = Helper.getActiveWorm().getWarmsInventory().keySet().iterator();
 
 
   public Player(String name, Color color, Boolean debutant) {
@@ -73,17 +78,20 @@ public class Player {
       return;
     }
 
+    Iterator<AbstractWeapon> itr2 = Helper.getActiveWorm().getWarmsInventory().keySet().iterator();
     while (itr2.hasNext()) {
-      if (currentWeapon == itr2) {
-        currentWeapon = itr2.next();
+
+      if (currentWeapon == itr2.current()) {
+        System.out.println("test");
+        setCurrentWeapon(itr2.next());
+        break;
+
+      } else {
+        System.out.println("toto");
+        itr2.next();
       }
     }
   }
-
-  public void setItr2() {
-    Player.itr2 = Helper.getActiveWorm().getWarmsInventory().keySet().iterator();;
-  }
-
 
   public void initWeapon() {
     currentWeapon = new Hadoken();

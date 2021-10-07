@@ -93,34 +93,22 @@ public class TimeController implements ActionListener {
       String isDebutant = scan.next();
       if (Objects.equals(isDebutant, "y")) {
         debutant = true;
+      } else {
+        debutant = false;
       }
+      Player player = createPlayer(playerName, colors.get(iP), debutant);
       for (int iW = 0; iW < nbrWorms; ++iW) {
         System.out.println("Veuillez saisir le nom du worm " + (iW +1) + ": ");
         teams.get(playerName)[iW] = scan.next();
-        //private static Map<String, String[]> teams2 = new HashMap<>();
+      }
+      for (String wormName : teams.get(playerName)) {
+        Worm worm = player.createWorm(wormName);
+        board.wormInitialPlacement(worm);
+        setNextWorm();
       }
     }
-
-    int i = 0;
-    for (String playerName : teams.keySet()) {
-        Player player = createPlayer(playerName, colors.get(i), debutant);
-        i++;
-        for (String wormName : teams.get(playerName)) {
-          Worm worm = player.createWorm(wormName);
-          board.wormInitialPlacement(worm);
-          setNextWorm();
-        }
-    }
-
     setCurrentNbPlayer(Helper.getTC().getPlayers().size());
-    /*
-    if(Config.getScriptFilename() != null) {
-      scriptPlayer = new ScriptPlayer(Config.getScriptFilename());
-    }
-    */
-
     doSetNextWorm();
-
   }
 
   public void setNextWorm() {

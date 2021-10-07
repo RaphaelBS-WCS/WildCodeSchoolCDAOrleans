@@ -69,24 +69,22 @@ public class Player {
    * This should call the inventory, and handle
    */
   public void changeWeapon() {
-    if (currentWeapon.isChangingWeaponDisabled()) {
-      return;
-    }
 
-    while (itr2.hasNext()) {
-      if (currentWeapon == itr2) {
-        currentWeapon = itr2.next();
+    for (int i = 0; i <= Helper.getActiveWorm().getWarmsInventory().size(); i++) {
+      if (currentWeapon.equals(Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon())) {
+        if (i == Helper.getActiveWorm().getWarmsInventory().size() -1) {
+          i = 0;
+          currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon();
+          break;
+        }
+        currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i+1).getWeapon();
+        break;
       }
     }
   }
 
-  public void setItr2() {
-    Player.itr2 = Helper.getActiveWorm().getWarmsInventory().keySet().iterator();;
-  }
-
-
   public void initWeapon() {
-    currentWeapon = new Hadoken();
+    currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(0).getWeapon();
   }
 
   public int getPlayerLife() {

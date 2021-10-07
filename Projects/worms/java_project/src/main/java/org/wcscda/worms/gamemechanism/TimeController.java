@@ -64,9 +64,6 @@ public class TimeController implements ActionListener {
   }
 
   private void initGame() {
-    board = new PhysicalController();
-
-
 
     ArrayList<Color> colors = new ArrayList<>();
     colors.add(Color.RED);
@@ -80,8 +77,15 @@ public class TimeController implements ActionListener {
     Collections.shuffle(colors);
 
     Scanner scan = new Scanner(System.in);
-    System.out.println("Veuillez saisir le nombre de joueur : ");
+    System.out.println("Veuillez saisir le nombre de joueur (minimum 2) : ");
     int nbrPlayer = scan.nextInt();
+    if (nbrPlayer < 2) {
+      System.out.println("Il faut un minimum de deux joueurs.");
+      initGame();
+      return;
+    }
+    board = new PhysicalController();
+
     System.out.println("Veuillez saisir le nombre de worms par joueur : ");
     int nbrWorms = scan.nextInt();
 

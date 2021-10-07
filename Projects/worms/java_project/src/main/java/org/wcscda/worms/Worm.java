@@ -18,7 +18,7 @@ import org.wcscda.worms.gamemechanism.Board;
 public class Worm extends ARBEWithGravity implements IVisitable {
   private static final String leftFacingResource = "src/resources/WormLF.png";
   private static final String rightFacingResource = "src/resources/WormRF.png";
- /* package */ static class WeaponAndMunition {
+ public static class WeaponAndMunition {
     private AbstractWeapon weapon;
     private Integer ammoNumber;
 

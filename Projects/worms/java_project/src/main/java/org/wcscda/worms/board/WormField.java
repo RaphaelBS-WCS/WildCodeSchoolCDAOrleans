@@ -24,6 +24,9 @@ public class WormField extends AbstractBoardElement {
     initRandomSpline(width, height);
   }
 
+  private static final  String imagePath = "src/resources/weapons/victory.png";
+  private static Image image = null;
+
   public static void playerVictory(Graphics2D g) {
 
 
@@ -60,6 +63,10 @@ public class WormField extends AbstractBoardElement {
     frontier = new Area(p);
   }
 
+  private static void initImages() {
+    image = new ImageIcon(imagePath).getImage().getScaledInstance(400, 600, 0);
+  }
+
   @Override
   public void drawMain(Graphics2D g, ImageObserver io) {
 
@@ -83,8 +90,13 @@ public class WormField extends AbstractBoardElement {
     if (Helper.getTC().getCurrentNbPlayer() == 1) {
       for (Player player : Helper.getTC().getPlayers()) {
         if (player.getPlayerLife() > 0) {
+          g.setColor(player.getColor());
           g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-          g.drawString(player.getName() + " win!!!!", 450, 100);
+          g.drawString(player.getName() + " win!!!!", 500, 100);
+          if (image == null) {
+            initImages();
+          }
+          g.drawImage(image, 450, 150, io );
           break;
         }
       }

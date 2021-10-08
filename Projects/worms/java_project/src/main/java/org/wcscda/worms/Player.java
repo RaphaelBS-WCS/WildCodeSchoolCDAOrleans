@@ -71,20 +71,21 @@ public class Player {
   public void changeWeapon() {
 
     for (int i = 0; i <= Helper.getActiveWorm().getWarmsInventory().size(); i++) {
-      if (currentWeapon.equals(Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon())) {
-        if (i == Helper.getActiveWorm().getWarmsInventory().size() -1) {
-          i = 0;
-          currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon();
+        if (currentWeapon.equals(Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon())) {
+          if (i == Helper.getActiveWorm().getWarmsInventory().size() - 1) {
+            i = 0;
+            currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon();
+            break;
+        }
+            currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i + 1).getWeapon();
           break;
         }
-        currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i+1).getWeapon();
-        break;
       }
     }
   }
 
   public void initWeapon() {
-    currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(0).getWeapon();
+        currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(0).getWeapon();
   }
 
   public int getPlayerLife() {

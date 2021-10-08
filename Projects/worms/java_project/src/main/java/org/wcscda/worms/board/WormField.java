@@ -13,6 +13,8 @@ import org.wcscda.worms.Player;
 import org.wcscda.worms.RandomGenerator;
 import org.wcscda.worms.gamemechanism.TimeController;
 
+import javax.swing.*;
+
 public class WormField extends AbstractBoardElement {
   private Area frontier;
 
@@ -20,6 +22,12 @@ public class WormField extends AbstractBoardElement {
 
   public WormField(int width, int height) {
     initRandomSpline(width, height);
+  }
+  private static final  String imagePath = "src/resources/weapons/worms-1024*576.jpg.jpeg";
+  private static Image image = null;
+
+  private static void initImages() {
+    image = new ImageIcon(imagePath).getImage().getScaledInstance(50, 30, 0);
   }
 
   public static void playerVictory(Graphics2D g) {
@@ -60,6 +68,10 @@ public class WormField extends AbstractBoardElement {
 
   @Override
   public void drawMain(Graphics2D g, ImageObserver io) {
+    if (image == null) {
+      initImages();
+    }
+    g.drawImage(image, 1024, 576, io );
     g.setColor(Color.green);
     g.fill(frontier);
     int i = 15;

@@ -27,6 +27,10 @@ public class WormField extends AbstractBoardElement {
   private static final  String imagePath = "src/resources/weapons/victory.png";
   private static Image image = null;
 
+  private static final  String drawImagePath = "src/resources/weapons/draw.png";
+  private static Image drawImage = null;
+
+
   public static void playerVictory(Graphics2D g) {
 
 
@@ -65,6 +69,7 @@ public class WormField extends AbstractBoardElement {
 
   private static void initImages() {
     image = new ImageIcon(imagePath).getImage().getScaledInstance(400, 600, 0);
+    drawImage = new ImageIcon(drawImagePath).getImage().getScaledInstance(700, 650, 0);
   }
 
   @Override
@@ -96,13 +101,17 @@ public class WormField extends AbstractBoardElement {
           if (image == null) {
             initImages();
           }
-          g.drawImage(image, 450, 150, io );
+          g.drawImage(image, 400, 150, io );
           break;
         }
       }
     } else if (Helper.getTC().getCurrentNbPlayer() == -1) {
        g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
        g.drawString("Draw!!!", 500, 100);
+      if (drawImage == null) {
+        initImages();
+      }
+       g.drawImage(drawImage, 300, 150, io );
     }
   }
 

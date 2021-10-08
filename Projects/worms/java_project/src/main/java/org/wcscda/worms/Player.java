@@ -82,7 +82,6 @@ public class Player {
         }
       }
     }
-  }
 
   public void initWeapon() {
         currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(0).getWeapon();

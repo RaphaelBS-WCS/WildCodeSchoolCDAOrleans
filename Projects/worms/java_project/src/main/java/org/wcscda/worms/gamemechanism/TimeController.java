@@ -64,9 +64,6 @@ public class TimeController implements ActionListener {
   }
 
   private void initGame() {
-    board = new PhysicalController();
-
-
 
     ArrayList<Color> colors = new ArrayList<>();
     colors.add(Color.RED);
@@ -78,49 +75,60 @@ public class TimeController implements ActionListener {
     colors.add(Color.GREEN);
     colors.add(Color.YELLOW);
     Collections.shuffle(colors);
+    int nbrPlayer = 0;
+    int nbrWorms = 0;
 
     Scanner scan = new Scanner(System.in);
-    System.out.println("Veuillez saisir le nombre de joueur : ");
-    int nbrPlayer = scan.nextInt();
-    System.out.println("Veuillez saisir le nombre de worms par joueur : ");
-    int nbrWorms = scan.nextInt();
+    System.out.println("Veuillez saisir le nombre de joueur (minimum 2) : ");
+    try {
+      nbrPlayer = scan.nextInt();
+    } catch (InputMismatchException e) {
+      System.out.println("Veuillez saisir un chiffre!");
+      initGame();
+      return;
+    }
+    if (nbrPlayer < 2) {
+      System.out.println("Il faut un minimum de deux joueurs.");
+      initGame();
+      return;
+    }
 
+
+    System.out.println("Veuillez saisir le nombre de worms par joueur : ");
+    try {
+      nbrWorms = scan.nextInt();
+    } catch (InputMismatchException e) {
+      System.out.println("Veuillez saisir un chiffre!");
+      initGame();
+      return;
+    }
+    board = new PhysicalController();
     for (int iP = 0; iP < nbrPlayer; ++iP) {
       System.out.println("Veuillez saisir le nom du joueur " + (iP +1) + ": ");
       String playerName = scan.next();
       teams.put(playerName, new String[nbrWorms]);
-      System.out.println((iP +1) + " est il debutant ? (y/n) : ");
+      System.out.println("" + playerName + " est il debutant ? (y/n) : ");
       String isDebutant = scan.next();
       if (Objects.equals(isDebutant, "y")) {
         debutant = true;
+      } else {
+        debutant = false;
       }
+      int iColor = (int)(Math.random() *  colors.size());
+
+      Player player = createPlayer(playerName, colors.get(iColor), debutant);
       for (int iW = 0; iW < nbrWorms; ++iW) {
         System.out.println("Veuillez saisir le nom du worm " + (iW +1) + ": ");
         teams.get(playerName)[iW] = scan.next();
-        //private static Map<String, String[]> teams2 = new HashMap<>();
+      }
+      for (String wormName : teams.get(playerName)) {
+        Worm worm = player.createWorm(wormName);
+        board.wormInitialPlacement(worm);
+        setNextWorm();
       }
     }
-
-    int i = 0;
-    for (String playerName : teams.keySet()) {
-        Player player = createPlayer(playerName, colors.get(i), debutant);
-        i++;
-        for (String wormName : teams.get(playerName)) {
-          Worm worm = player.createWorm(wormName);
-          board.wormInitialPlacement(worm);
-          setNextWorm();
-        }
-    }
-
     setCurrentNbPlayer(Helper.getTC().getPlayers().size());
-    /*
-    if(Config.getScriptFilename() != null) {
-      scriptPlayer = new ScriptPlayer(Config.getScriptFilename());
-    }
-    */
-
     doSetNextWorm();
-
   }
 
   public void setNextWorm() {

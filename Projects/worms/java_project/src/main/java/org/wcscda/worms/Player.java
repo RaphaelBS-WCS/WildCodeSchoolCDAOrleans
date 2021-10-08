@@ -12,19 +12,18 @@ public class Player {
   private final ArrayList<Worm> worms = new ArrayList<Worm>();
   private AbstractWeapon currentWeapon;
   private int currentWormIndex = 0;
-  private static boolean debutant = false;
-  private static Iterator<AbstractWeapon> itr2;
+  private boolean debutant = false;
 
 
   public Player(String name, Color color, Boolean debutant) {
     this.name = name;
     this.color = color;
-    Player.debutant = debutant;
+    this.debutant = debutant;
   }
 
 
-  public static boolean isDebutant() {
-    return debutant;
+  public boolean isDebutant() {
+    return this.debutant;
   }
 
   public String getName() {
@@ -70,21 +69,30 @@ public class Player {
    */
   public void changeWeapon() {
 
-    for (int i = 0; i <= Helper.getActiveWorm().getWarmsInventory().size(); i++) {
-        if (currentWeapon.equals(Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon())) {
-          if (i == Helper.getActiveWorm().getWarmsInventory().size() - 1) {
-            i = 0;
-            currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon();
-            break;
-        }
-            currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(i + 1).getWeapon();
-          break;
-        }
+    ArrayList<WeaponAndMunition> wormInventory = new ArrayList<>();
+
+    for (int i = 0; i < Helper.getActiveWorm().getWarmsInventory().size(); i++) {
+      if (Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber() == null || Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber() > 0) {
+        wormInventory.add(Helper.getActiveWorm().getWarmsInventory().get(i));
       }
     }
 
+    for (int i = 0; i <= wormInventory.size(); i++) {
+      if (currentWeapon.equals(wormInventory.get(i).getWeapon())) {
+        if (i == wormInventory.size() - 1) {
+          i = 0;
+          currentWeapon = wormInventory.get(i).getWeapon();
+          break;
+        }
+        currentWeapon = wormInventory.get(i + 1).getWeapon();
+        break;
+      }
+    }
+
+  }
+
   public void initWeapon() {
-        currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(0).getWeapon();
+    currentWeapon = Helper.getActiveWorm().getWarmsInventory().get(0).getWeapon();
   }
 
   public int getPlayerLife() {

@@ -54,6 +54,13 @@ public class BombAmmo extends AbstractAmmo{
                 rectHeight,
                 this));
         setInitTime(Helper.getClock());
+
+        for (int i = 0; i < Helper.getActiveWorm().getWarmsInventory().size(); i++) {
+            if (Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon() instanceof Bomb) {
+                Integer newAmmoNumber = Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber();
+                Helper.getActiveWorm().getWarmsInventory().get(i).setAmmoNumber(newAmmoNumber-1);
+            }
+        }
     }
 
     public void setInitTime(int initTime) {

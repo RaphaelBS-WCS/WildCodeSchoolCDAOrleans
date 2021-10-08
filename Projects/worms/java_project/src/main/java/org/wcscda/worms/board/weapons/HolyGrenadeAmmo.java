@@ -47,5 +47,12 @@ public class HolyGrenadeAmmo extends AbstractAmmo{
                 rectWidth,
                 rectHeight,
                 this));
+
+        for (int i = 0; i < Helper.getActiveWorm().getWarmsInventory().size(); i++) {
+            if (Helper.getActiveWorm().getWarmsInventory().get(i).getWeapon() instanceof HolyGrenade) {
+                Integer newAmmoNumber = Helper.getActiveWorm().getWarmsInventory().get(i).getAmmoNumber();
+                Helper.getActiveWorm().getWarmsInventory().get(i).setAmmoNumber(newAmmoNumber-1);
+            }
+        }
     }
 }

@@ -57,6 +57,10 @@ public abstract class Board extends JPanel {
       Helper.getTC().setCurrentPhase(new EndOfGamePhase());
     }
 
+    if(Helper.getClock() == 1) {
+      new HomePicture();
+    }
+
     AbstractDrawableElement.getAllDrawable().forEach(AbstractDrawableElement::onIterationBegin);
 
     Helper.getTC().getKeyboardController().onIterationBegin();

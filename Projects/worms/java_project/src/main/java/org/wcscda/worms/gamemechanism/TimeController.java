@@ -10,6 +10,7 @@ import org.wcscda.worms.Config;
 import org.wcscda.worms.Helper;
 import org.wcscda.worms.Player;
 import org.wcscda.worms.Worm;
+import org.wcscda.worms.board.HomePicture;
 import org.wcscda.worms.gamemechanism.phases.AbstractPhase;
 import org.wcscda.worms.gamemechanism.phases.WormMovingPhase;
 import org.wcscda.worms.gamemechanism.playerrecorder.KeyboardControllerPlayer;
@@ -24,6 +25,7 @@ public class TimeController implements ActionListener {
 
   private final KeyboardController keyboardController;
   private PhysicalController board;
+
   private Timer timer;
   private ArrayList<Player> players = new ArrayList<Player>();
   private int activePlayerIndex = 0;
@@ -129,6 +131,7 @@ public class TimeController implements ActionListener {
     }
     setCurrentNbPlayer(Helper.getTC().getPlayers().size());
     doSetNextWorm();
+
   }
 
   public void setNextWorm() {

@@ -15,7 +15,6 @@ public class PhysicalController extends Board implements IMovableVisitor {
   private static final double GRAVITY_ACCELERATION = 0.1;
 
   private static PhysicalController instance;
-
   public static PhysicalController getInstance() {
     return instance;
   }

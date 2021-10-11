@@ -1,0 +1,5 @@
+# Optionnal quest
+
+Dans le module G_debug_challenge, lancer le fichier app.
+Que se passe-t-il ? Pourquoi le message "Hello World !" n'est-il
+pas affiché alors qu'il est la première ligne de la méthode main.

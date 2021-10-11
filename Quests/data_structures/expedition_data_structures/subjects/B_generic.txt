@@ -1,0 +1,27 @@
+# Genericité
+
+Maintenant que votre structure de donnée fonctionne, on
+va l'adapter pour gérer les sentinelles d'Ultron.
+
+Pour cela, nous allons la rendre générique, c'est à dire
+qu'elle doit pouvoir aussi bien gérer des Integer que des
+Sentinel.
+
+Vous pouvez regarder :
+https://docs.oracle.com/javase/tutorial/java/generics/index.html
+
+Concrètement il faut ajouter un <T> ou <E> derrière le nom de la
+classe pour la rendre capable de s'adapter à différent type.
+
+Reprenez votre code de A_collection.FixedSizeCollection, mettez
+le dans B_generic en remplaçant les Integer par le paramêtre
+générique et vérifiez que les test pour les deux spécialisations
+IntegerFixedSizeCollection et SentinelFixedSizeCollection
+fonctionnent bien.
+
+NB : les constructeurs sont déjà présents, car il y a une astuce
+un peu compliquée pour faire le new T[];
+
+Il est interdit de modifier les classes :
+IntegerFixedSizeCollection
+SentinelFixedSizeCollection

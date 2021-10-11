@@ -1,0 +1,39 @@
+# Interface collection
+
+Ultron vous a contraint (ou engagé suivant votre position sur les
+IA maléfique) a l'aider à travailler sur un outil de gestionnaire
+d'armée. Comme il ne fait pas confiance aux structures java, vous
+devez commencer par redéfinir une collection personnalisé.
+(NB : cet exercice est à but pédagogique, ne faites pas cela dans
+le cas réel)
+
+Pour se simplifier la vie nous ferons une collection de Integer
+(mais après il s'agira de gérer les sentinelles d'Ultron)
+
+https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html
+
+Dans le package A_collection, mettez à jour la classe FixedSizeCollection
+en la faisant implémenter l'interface collection<Integer>
+
+Votre objectif est d'implémenter les méthodes suivantes :
+
+- le constructeur
+- isEmpty
+- toArray (qui renvoit le tableau sous-jacent)
+- size (note size renvoit le nombre d'élément dans la liste
+pas la taille maximum)
+- add
+- contains
+- remove
+
+On stockera les objets dans une array (Integer[]) avec le
+comportement suivant :
+
+- on précise la taille du tableau dans le constructeur
+- on stocke les objets à la suite dans le tableau
+- il ne peut y avoir d'objet null dans le tableau (les
+cases non remplies à la fin du tableau faisant exception)
+
+L'objectif est tout simplement de passer les tests unitaires !
+
+Optionnal challenge : essayez de définir la méthode iterator !

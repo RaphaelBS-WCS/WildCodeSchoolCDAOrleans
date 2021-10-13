@@ -3,6 +3,7 @@ package wcscda.quest.C_ultron_army;
 import wcscda.quest.Sentinel;
 
 import java.util.Collection;
+import java.util.Set;
 
 public class ArmyCollection implements UltronArmy {
     private final Collection<Sentinel> collection;
@@ -13,26 +14,42 @@ public class ArmyCollection implements UltronArmy {
 
     @Override
     public boolean add(Sentinel sentinel) {
-        return false;
+        collection.add(sentinel);
+        return true;
     }
 
     @Override
     public int size() {
-        return 0;
+        return collection.size();
     }
 
     @Override
     public Sentinel[] getPatrol(int patrolSize) {
-        return new Sentinel[0];
+        int i = 0;
+        Sentinel[] patrol = new Sentinel[patrolSize];
+
+        for ( Sentinel sentinel : collection) {
+            patrol[i] = sentinel;
+            i++;
+            if (i == patrolSize) {
+                break;
+            }
+        }
+        for (Sentinel sentinel: patrol) {
+            collection.remove(sentinel);
+        }
+        return patrol;
     }
 
     @Override
     public void patrolReturn(Sentinel[] sentinels) {
-
+        for (int i = 0; i < sentinels.length; i++) {
+            collection.add(sentinels[i]);
+        }
     }
 
     @Override
     public boolean contains(Sentinel sentinel) {
-        return false;
+        return collection.contains(sentinel);
     }
 }

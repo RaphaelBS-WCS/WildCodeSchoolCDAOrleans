@@ -3,7 +3,7 @@ package wcscda.quest.G_debug_challenge;
 public class App {
     private static App instance = new App();
 
-    private Integer id;
+    private Integer id = 0;
 
     public App() {
         if(id < 0) {

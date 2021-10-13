@@ -10,21 +10,39 @@ public class FixedSizeCollection implements Collection<Integer> {
     private Integer[] array;
 
     public FixedSizeCollection(int maxSize) {
-
+        this.array = new Integer[maxSize];
     }
 
     @Override
     public int size() {
-        return array.length;
+        int s = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == null) {
+                s++;
+            }
+        }
+         int j = array.length - s;
+        return j;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        boolean e = true;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] != null) {
+                e = false;
+            }
+        }
+        return e;
     }
 
     @Override
     public boolean contains(Object o) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(o)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -45,12 +63,27 @@ public class FixedSizeCollection implements Collection<Integer> {
 
     @Override
     public boolean add(Integer integer) {
-
-        return array.toString().contains(integer);
+        for ( int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                array[i] = integer;
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean remove(Object o) {
+        for ( int i = 0; i < array.length; i++) {
+            if (array[i] == o) {
+                while (i < array.length -1) {
+                    array[i] = array[i +1];
+                    i++;
+                }
+                array[i] = null;
+                return true;
+            }
+        }
         return false;
     }
 

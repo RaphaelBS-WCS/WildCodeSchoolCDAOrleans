@@ -35,7 +35,7 @@ public class FixedSizeCollection implements Collection<Integer> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return array;
     }
 
     @Override

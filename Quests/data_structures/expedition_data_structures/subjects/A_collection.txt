@@ -22,14 +22,21 @@ Votre objectif est d'implémenter les méthodes suivantes :
 - toArray (qui renvoit le tableau sous-jacent)
 - size (note size renvoit le nombre d'élément dans la liste
 pas la taille maximum)
-- add
+- add (lorsque la taille maximale est atteinte, l'objet n'est
+pas ajouté)
 - contains
 - remove
+
+Il est bien entendu interdit d'utiliser les classes de
+la librairie standard :-) (java.util.*). Il faut se débrouiller
+avec des tableaux / array (Integer[]) et les structures
+standards (for / if / else / equals ...)
 
 On stockera les objets dans une array (Integer[]) avec le
 comportement suivant :
 
-- on précise la taille du tableau dans le constructeur
+- on précise la taille du tableau dans le constructeur. Cette
+taille ne doit plus être modifiée.
 - on stocke les objets à la suite dans le tableau
 - il ne peut y avoir d'objet null dans le tableau (les
 cases non remplies à la fin du tableau faisant exception)

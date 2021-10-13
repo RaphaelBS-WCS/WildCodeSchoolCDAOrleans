@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class FixedSizeCollectionTest {
+public class  FixedSizeCollectionTest {
     private FixedSizeCollection fixture = new FixedSizeCollection(5);
 
     @Test

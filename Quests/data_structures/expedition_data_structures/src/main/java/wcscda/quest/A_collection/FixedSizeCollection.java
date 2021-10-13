@@ -15,7 +15,7 @@ public class FixedSizeCollection implements Collection<Integer> {
 
     @Override
     public int size() {
-        return 0;
+        return array.length;
     }
 
     @Override
@@ -45,7 +45,8 @@ public class FixedSizeCollection implements Collection<Integer> {
 
     @Override
     public boolean add(Integer integer) {
-        return false;
+
+        return array.toString().contains(integer);
     }
 
     @Override

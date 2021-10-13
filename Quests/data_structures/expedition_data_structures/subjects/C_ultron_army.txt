@@ -1,0 +1,36 @@
+# Ultron army
+
+Après les essais à succès mitigés, Ultron décide de basculer sur
+les structures classiques de java, tout compte fait.
+
+Dans un premier temps, il a besoin d'une structure pour gérer son
+armée et ses patrouilles. Il a besoin des 5 méthodes définies dans
+l'interface UltronArmy :
+
+    // Add a sentinel to the army
+  * boolean add(Sentinel sentinel);
+    // Get the size of the army
+  * int size();
+
+    // Get a patrol out of the army (so this method
+    // reduce the army size by patrolSize and return null
+    // if patrolSize > armySize
+  * Sentinel[] getPatrol(int patrolSize);
+
+    // Put back the patrol in the army (this method increase
+    // army size by patrol.length
+  * void patrolReturn(Sentinel[] patrol);
+
+  * boolean contains(Sentinel sentinel);
+
+Pour cela il aimerait tester deux façons, une ArmyArrayList basée
+sur la méthode ArrayListUtil.pop et une ArmyCollection à qui l'on
+donne une collection en paramètre et qui l'utilise pour stocker
+l'armée (le HashSet et leArrayList seront utilisés).
+Dans le deuxième cas on aura besoin de la méthode remove pour
+enlever les patrouilles de l'armée (ou mieux, removeAll)
+
+Le critère de validation est le passage des tests unitaires
+
+Important : regardez les temps d'exécution des différents méthodes
+performanceTest. Que constatez vous ?

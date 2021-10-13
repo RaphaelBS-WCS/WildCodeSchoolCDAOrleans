@@ -1,13 +1,14 @@
 package wcscda.quest.B_generic;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import wcscda.quest.B_generic.IntegerFixedSizeCollection;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class IntegerFixedSizeCollectionTest {
     private IntegerFixedSizeCollection fixture = new IntegerFixedSizeCollection(5);
@@ -76,7 +77,7 @@ public class IntegerFixedSizeCollectionTest {
         assertArrayEquals(new Integer[]{4, 13, 22, null, null}, fixture.toArray());
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         fixture = new IntegerFixedSizeCollection(5);
     }

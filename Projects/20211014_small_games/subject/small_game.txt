@@ -1,0 +1,53 @@
+# Spécifications du jeu Morpion / Echec
+
+Le projet se fait sur la journée du jeudi 14 octobre.
+Il peut se faire par groupe de 1 ou de 2.
+Dans le second cas, envoyez un message sur slack pour indiquer
+la composition du groupe et le repository github utilisé.
+
+- Objectif
+
+* Développer un petit jeu classique (Morpion ou Echec)
+* Les échecs sont la version plus difficile, vous pouvez commencer
+par celui que vous voulez (NB : il n'est pas prévu que vous complé-
+tiez les deux dans la journée :-) )
+
+- Objectif pédagogiques
+
+
+- Etapes
+
+1. Commencez par écrire une grille pour votre jeu SANS UTILISER
+de copier-coller, mais avec des boucles (il est interdit d'utiliser
+une ligne de code par ligne et/ou par colonne)
+
+Mettez votre code dans la méthode drawGrid de Chess / Morpion
+
+2. Pour votre jeu, vous allez devoir garder en mémoire la position
+des différents coups / pièces. Vous avez :
+== Morpion 9 cases / 3 états
+    => croix
+    => rond
+    => case vide
+== Echec 64 cases / 13 états (6 pièces * 2 couleurs + case vide)
+
+Comment allez-vous représenter cela dans le programme ?
+Pour l'affichage graphique, si vous faites les échecs, vous pouvez
+vous contenter de lettres.
+
+3. Ajoutez le fonctionnement du jeu par clic :
+== Morpion c'est simple, si vous cliquez sur une case vous placez dessus
+une croix ou un rond (en alternance).
+== Pour les échecs, vous devez avoir deux clics pour déplacer une pièce
+(c'est plus compliqué) et il faut bien entendu respecter les règles
+de déplacement des pièces
+
+Vous devez effectuer deux actions :
+- en interne mettre à jour la structure de donnée choisie pour
+représenter le jeu
+- et mettre à jour la représentation graphique du jeu (via la méthode
+draw de la classe Morpion / Chess)
+
+4. Développer une méthode pour déterminer si un joueur a gagné.
+(NB : pour les échecs, gérez tous les déplacement légaux des pièces
+serait déjà un beau succès)

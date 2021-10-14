@@ -146,6 +146,8 @@ public class Worm extends ARBEWithGravity implements IVisitable {
   }
 
   public void die() {
+    // NRO 2021-10-14 : Don't forget to remove the coucou
+    // before pushing in main
     System.out.println(Helper.getTC().getCurrentNbPlayer());
     removeSelf();
   }
@@ -164,7 +166,8 @@ public class Worm extends ARBEWithGravity implements IVisitable {
     visitor.visit(this, prevPosition);
   }
 
-
+  // NRO 2021-10-14 : Warms ? Is it for surrounded by blankets ? ;-)
+  // If it is the sigle, use getWAMInventory()
   public ArrayList<WeaponAndMunition> getWarmsInventory() {
     return this.warmsInventory;
   }

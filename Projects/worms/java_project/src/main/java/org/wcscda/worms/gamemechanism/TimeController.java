@@ -31,7 +31,16 @@ public class TimeController implements ActionListener {
   private int activePlayerIndex = 0;
   private AbstractPhase currentPhase;
   private int phaseCount = 0;
+  // NRO 2021-10-14 : this one seems to be the same as
+  // players.size(), so by duplicating the information, you
+  // put yourself at risks.
+  // One of the points of the getter is that you can have things such
+  // as public int getCurrentNbPlayer() { return players.size(); }
+  //
+  // So you are having the property currentNbPlayer without having
+  // to maintain the attribute.
   private int currentNbPlayer = 0;
+  // NRO 2021-10-14 : Stick with english please
   private boolean debutant = false;
   public static Map<String, String[]> getTeams() {
     return teams;
@@ -68,6 +77,11 @@ public class TimeController implements ActionListener {
   private void initGame() {
 
     ArrayList<Color> colors = new ArrayList<>();
+    /* NRO 2021-10-14 : you can use
+    colors.addAll(Arrays.asList(new Color[]{
+            Color.RED, Color.BLACK, Color.BLUE, ...
+    }));
+     */
     colors.add(Color.RED);
     colors.add(Color.ORANGE);
     colors.add(Color.BLUE);

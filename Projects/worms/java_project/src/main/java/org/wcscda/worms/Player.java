@@ -3,6 +3,8 @@ package org.wcscda.worms;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 import org.wcscda.worms.board.weapons.*;
 
@@ -63,9 +65,7 @@ public class Player {
     currentWormIndex %= worms.size();
   }
 
-  /* NRO 2021-09-30 : TODO-student make a better version of
-   * this, this is just a temporary version :-)
-   * This should call the inventory, and handle
+  /* NRO 2021-10-14 : great !
    */
   public void changeWeapon() {
 
@@ -77,6 +77,17 @@ public class Player {
       }
     }
 
+    // NRO 2021-10-14 : ouch for the i <= wormInventory.size()
+    // which can cause an exception (wormInventory.size() is not
+    // a valid index) but since your code always find the weapon
+    // it is ok.
+    //
+    // @Zurabi : you would prefer doing something like this
+    //
+    // OptionalInt indexIfFound = IntStream.range(0, wormInventory.size())
+    //        .filter(i -> currentWeapon.equals(wormInventory.get(i).getWeapon()))
+    //        .findFirst();
+    // currentWeapon = wormInventory.get(indexIfFound.orElse(-1) + 1).getWeapon();
     for (int i = 0; i <= wormInventory.size(); i++) {
       if (currentWeapon.equals(wormInventory.get(i).getWeapon())) {
         if (i == wormInventory.size() - 1) {
@@ -103,6 +114,10 @@ public class Player {
     return playerLife;
   }
 
+  // NRO 2021-10-14 : By convention methods starting with "is"
+  // are boolean getter.
+  // For exemple :
+  // public boolean isDead() { return getPlayerLife() <= 0; }
   public static void isPlayerDie() {
     for (Player player : Helper.getTC().getPlayers()) {
       if (player.getPlayerLife() <= 0) {

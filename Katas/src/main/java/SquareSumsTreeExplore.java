@@ -12,7 +12,7 @@ public class SquareSumsTreeExplore {
 
     // https://www.codewars.com/kata/5a667236145c462103000091/train/java
     public static void main(String[] args) {
-        for(int i = 1; i < 50; ++i){
+        for(int i = 1; i < 20; ++i){
             System.out.println("Solving n = " + i);
             varDump(buildUpTo(i));
         }

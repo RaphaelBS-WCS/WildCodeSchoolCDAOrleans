@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.Collection;
 
 public class App {
-  public static void main(String[] args) throws JsonProcessingException, IllegalAccessException {
+  public static void main2(String[] args) throws JsonProcessingException, IllegalAccessException {
     System.out.println("4 / 5 * 5 => " + (4 / 5 * 5));
 
     Collection<Worm> collection = new ArrayList<>();
     collection.remove(5);
   }
 
-    public static void main2(String[] args) throws JsonProcessingException, IllegalAccessException {
+    public static void main(String[] args) throws JsonProcessingException, IllegalAccessException {
 
 
     Player player = new Player("Nico");
